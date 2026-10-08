@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Little Box of Memories 💚</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Cute Loading Screen -->
+<div id="loadingScreen">
+    <div class="loading-content">
+        <div class="loading-gift">🎁</div>
+
+        <h2>Our Little Box of Memories 💚</h2>
+
+        <p>Loading our little world...</p>
+
+        <div class="loading-hearts">
+            <span>💚</span>
+            <span>♡</span>
+            <span>🌿</span>
+            <span>♡</span>
+            <span>💚</span>
+        </div>
+
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+</div>
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <main class="page">
+
+        <section class="intro">
+
+            <p class="small-title">
+                FOR MY FAVORITE PERSON 💚
+            </p>
+
+            <h1>
+                Our Little Box of Memories
+            </h1>
+
+            <p class="monthsary">
+                Happy 5th Monthsary, ! 🥺💚
+            </p>
+
+            <p class="intro-text">
+                I made this little box filled with pieces of us,
+                little memories, things I love about you,
+                and words that come straight from my heart.
+            </p>
+
+            <p class="instruction" id="instruction">
+                Click the box to open our little world. 🎁
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             BIG GIFT BOX
+        ========================== -->
+
+        <section class="main-gift-section">
+
+            <button
+                class="big-gift"
+                id="bigGift"
+                type="button"
+                aria-label="Open our gift box"
+            >
+
+                <span class="gift-lid"></span>
+
+                <span class="gift-body">
+
+                    <span class="gift-ribbon vertical"></span>
+
+                    <span class="gift-ribbon horizontal"></span>
+
+                    <span class="gift-bow left"></span>
+
+                    <span class="gift-bow right"></span>
+
+                </span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             FIVE MINI GIFTS
+        ========================== -->
+
+        <section
+            class="gifts-container"
+            id="giftsContainer"
+        >
+
+            <!-- MEMORY -->
+
+            <button
+                class="gift memory-gift"
+                id="memoryGift"
+                type="button"
+            >
+
+                <span
+                    class="mini-gift-visual"
+                    aria-hidden="true"
+                >
+
+                    <span class="mini-gift-lid"></span>
+
+                    <span class="mini-gift-body"></span>
+
+                    <span class="mini-gift-ribbon"></span>
+
+                    <span class="mini-gift-bow left"></span>
+
+                    <span class="mini-gift-bow right"></span>
+
+                </span>
+
+                <span class="gift-icon">📸</span>
+
+                <span class="gift-title">
+                    Our Memories
+                </span>
+
+                <span class="gift-description">
+                    Little moments with you
+                </span>
+
+            </button>
+
+
+            <!-- THINGS I LOVE -->
+
+            <button
+                class="gift love-gift"
+                id="loveGift"
+                type="button"
+            >
+
+                <span
+                    class="mini-gift-visual"
+                    aria-hidden="true"
+                >
+
+                    <span class="mini-gift-lid"></span>
+
+                    <span class="mini-gift-body"></span>
+
+                    <span class="mini-gift-ribbon"></span>
+
+                    <span class="mini-gift-bow left"></span>
+
+                    <span class="mini-gift-bow right"></span>
+
+                </span>
+
+                <span class="gift-icon">💚</span>
+
+                <span class="gift-title">
+                    Things I Love About You
+                </span>
+
+                <span class="gift-description">
+                    Little things that make me love you more
+                </span>
+
+            </button>
+
+
+            <!-- OUR SONG -->
+
+            <button
+                class="gift song-gift"
+                id="songGift"
+                type="button"
+            >
+
+                <span
+                    class="mini-gift-visual"
+                    aria-hidden="true"
+                >
+
+                    <span class="mini-gift-lid"></span>
+
+                    <span class="mini-gift-body"></span>
+
+                    <span class="mini-gift-ribbon"></span>
+
+                    <span class="mini-gift-bow left"></span>
+
+                    <span class="mini-gift-bow right"></span>
+
+                </span>
+
+                <span class="gift-icon">🎵</span>
+
+                <span class="gift-title">
+                    Our Song
+                </span>
+
+                <span class="gift-description">
+                    A little song for us
+                </span>
+
+            </button>
+
+
+            <!-- OPEN WHEN -->
+
+            <button
+                class="gift open-when-gift"
+                id="openWhenGift"
+                type="button"
+            >
+
+                <span
+                    class="mini-gift-visual"
+                    aria-hidden="true"
+                >
+
+                    <span class="mini-gift-lid"></span>
+
+                    <span class="mini-gift-body"></span>
+
+                    <span class="mini-gift-ribbon"></span>
+
+                    <span class="mini-gift-bow left"></span>
+
+                    <span class="mini-gift-bow right"></span>
+
+                </span>
+
+                <span class="gift-icon">💌</span>
+
+                <span class="gift-title">
+                    Open When...
+                </span>
+
+                <span class="gift-description">
+                    Letters for different days
+                </span>
+
+            </button>
+
+
+            <!-- MY LETTER -->
+
+            <button
+                class="gift letter-gift"
+                id="letterGift"
+                type="button"
+            >
+
+                <span
+                    class="mini-gift-visual"
+                    aria-hidden="true"
+                >
+
+                    <span class="mini-gift-lid"></span>
+
+                    <span class="mini-gift-body"></span>
+
+                    <span class="mini-gift-ribbon"></span>
+
+                    <span class="mini-gift-bow left"></span>
+
+                    <span class="mini-gift-bow right"></span>
+
+                </span>
+
+                <span class="gift-icon">💚</span>
+
+                <span class="gift-title">
+                    My Letter
+                </span>
+
+                <span class="gift-description">
+                    A letter from my heart
+                </span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         MEMORY MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="memoryModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content memories-modal-content">
+
+            <button
+                class="close"
+                id="closeMemory"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <span class="modal-icon">📸</span>
+
+            <h2>
+                Our Memories
+            </h2>
+
+            <p class="modal-subtitle">
+                Some of my favorite moments are simply the moments I get to spend with you. 💚
+            </p>
+
+
+            <!-- =========================
+                 MEMORY PHOTO SLIDESHOW
+            ========================== -->
+
+            <div class="memory-slideshow">
+
+                <div class="memory-slide-frame">
+
+                    <img
+                        id="memorySlideImage"
+                        src="memories/1.jpg"
+                        alt="Our memory 1"
+                    >
+
+                </div>
+
+                <div class="memory-slide-info">
+
+                    <span id="memorySlideCounter">
+                        1 / 65
+                    </span>
+
+                    <h3 id="memorySlideTitle">
+                        Our Little Beginning 💚
+                    </h3>
+
+                    <p id="memorySlideDescription">
+                        One of the little moments that started becoming special to me.
+                    </p>
+
+                </div>
+
+                <div class="memory-slide-controls">
+
+                    <button
+                        class="memory-nav-button"
+                        id="previousMemory"
+                        type="button"
+                        aria-label="Previous memory"
+                    >
+                        ‹
+                    </button>
+
+                    <button
+                        class="memory-play-button"
+                        id="toggleMemorySlideshow"
+                        type="button"
+                        aria-label="Pause slideshow"
+                    >
+                        ⏸
+                    </button>
+
+                    <button
+                        class="memory-nav-button"
+                        id="nextMemory"
+                        type="button"
+                        aria-label="Next memory"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+                <div class="memory-progress">
+
+                    <div
+                        class="memory-progress-bar"
+                        id="memoryProgressBar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="memory-gallery">
+
+                <div class="memory-gallery-section">
+
+                    <h3 class="memory-gallery-title">
+                        📸 Our Pictures
+                    </h3>
+
+                    <div class="memory-photo-grid">
+
+                        <!-- PHOTOS -->
+
+                        <img src="memories/1.jpg" alt="Our memory 1">
+                        <img src="memories/2.jpg" alt="Our memory 2">
+                        <img src="memories/3.jpg" alt="Our memory 3">
+                        <img src="memories/4.jpg" alt="Our memory 4">
+                        <img src="memories/5.jpg" alt="Our memory 5">
+                        <img src="memories/6.jpg" alt="Our memory 6">
+                        <img src="memories/7.jpg" alt="Our memory 7">
+                        <img src="memories/8.jpg" alt="Our memory 8">
+                        <img src="memories/9.jpg" alt="Our memory 9">
+                        <img src="memories/10.jpg" alt="Our memory 10">
+                        <img src="memories/11.jpg" alt="Our memory 11">
+                        <img src="memories/12.jpg" alt="Our memory 12">
+                        <img src="memories/13.jpg" alt="Our memory 13">
+                        <img src="memories/14.jpg" alt="Our memory 14">
+                        <img src="memories/15.jpg" alt="Our memory 15">
+                        <img src="memories/16.jpg" alt="Our memory 16">
+                        <img src="memories/17.jpg" alt="Our memory 17">
+                        <img src="memories/18.jpg" alt="Our memory 18">
+                        <img src="memories/19.jpg" alt="Our memory 19">
+                        <img src="memories/20.jpg" alt="Our memory 20">
+                        <img src="memories/21.jpg" alt="Our memory 21">
+                        <img src="memories/22.jpg" alt="Our memory 22">
+                        <img src="memories/23.jpg" alt="Our memory 23">
+                        <img src="memories/24.jpg" alt="Our memory 24">
+                        <img src="memories/25.jpg" alt="Our memory 25">
+                        <img src="memories/26.jpg" alt="Our memory 26">
+                        <img src="memories/27.jpg" alt="Our memory 27">
+                        <img src="memories/28.jpg" alt="Our memory 28">
+                        <img src="memories/29.jpg" alt="Our memory 29">
+                        <img src="memories/30.jpg" alt="Our memory 30">
+                        <img src="memories/31.jpg" alt="Our memory 31">
+                        <img src="memories/32.jpg" alt="Our memory 32">
+                        <img src="memories/33.jpg" alt="Our memory 33">
+                        <img src="memories/34.jpg" alt="Our memory 34">
+                        <img src="memories/35.jpg" alt="Our memory 35">
+                        <img src="memories/36.jpg" alt="Our memory 36">
+                        <img src="memories/37.jpg" alt="Our memory 37">
+                        <img src="memories/38.jpg" alt="Our memory 38">
+                        <img src="memories/39.jpg" alt="Our memory 39">
+                        <img src="memories/40.jpg" alt="Our memory 40">
+                        <img src="memories/41.jpg" alt="Our memory 41">
+                        <img src="memories/42.jpg" alt="Our memory 42">
+                        <img src="memories/43.jpg" alt="Our memory 43">
+                        <img src="memories/44.jpg" alt="Our memory 44">
+                        <img src="memories/45.jpg" alt="Our memory 45">
+                        <img src="memories/46.jpg" alt="Our memory 46">
+                        <img src="memories/47.jpg" alt="Our memory 47">
+                        <img src="memories/48.jpg" alt="Our memory 48">
+                        <img src="memories/49.jpg" alt="Our memory 49">
+                        <img src="memories/50.jpg" alt="Our memory 50">
+                        <img src="memories/51.jpg" alt="Our memory 51">
+                        <img src="memories/52.jpg" alt="Our memory 52">
+                        <img src="memories/53.jpg" alt="Our memory 53">
+                        <img src="memories/54.jpg" alt="Our memory 54">
+                        <img src="memories/55.jpg" alt="Our memory 55">
+                        <img src="memories/56.jpg" alt="Our memory 56">
+                        <img src="memories/57.jpg" alt="Our memory 57">
+                        <img src="memories/58.jpg" alt="Our memory 58">
+                        <img src="memories/59.jpg" alt="Our memory 59">
+                        <img src="memories/60.jpg" alt="Our memory 60">
+                        <img src="memories/61.jpg" alt="Our memory 61">
+                        <img src="memories/62.jpg" alt="Our memory 62">
+                        <img src="memories/63.jpg" alt="Our memory 63">
+                        <img src="memories/64.jpg" alt="Our memory 64">
+                        <img src="memories/65.jpg" alt="Our memory 65">
+
+                    </div>
+
+                </div>
+
+
+                <div class="memory-gallery-section">
+
+                    <h3 class="memory-gallery-title">
+                        🎥 Our Videos
+                    </h3>
+
+                    <div class="memory-video-grid">
+
+                        <video controls playsinline preload="metadata">
+                            <source src="memories/IMG_8074.mp4" type="video/mp4">
+                        </video>
+
+                        <video controls playsinline preload="metadata">
+                            <source src="memories/IMG_5079.mp4" type="video/mp4">
+                        </video>
+
+                        <video controls playsinline preload="metadata">
+                            <source src="memories/IMG_7867.mp4" type="video/mp4">
+                        </video>
+
+                        <video controls playsinline preload="metadata">
+                            <source src="memories/IMG_8073.mp4" type="video/mp4">
+                        </video>
+
+                        <video controls playsinline preload="metadata">
+                            <source src="memories/IMG_8718.mp4" type="video/mp4">
+                        </video>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         THINGS I LOVE MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="loveModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content love-modal-content">
+
+            <button
+                class="close"
+                id="closeLove"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <span class="modal-icon">
+                💚
+            </span>
+
+            <h2>
+                Things I Love About You
+            </h2>
+
+            <p class="modal-subtitle">
+                There are so many little things I love about you. 🥺💚
+            </p>
+
+            <div class="love-list">
+
+                <div class="love-item">
+
+                    <span>💚</span>
+
+                    <div>
+
+                        <h3>Your Smile</h3>
+
+                        <p>
+                            I love your smile. Kahit simpleng smile lang,
+                            somehow it always makes my day a little better.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🥹</span>
+
+                    <div>
+
+                        <h3>The Way You Make Me Feel</h3>
+
+                        <p>
+                            I love how comfortable I feel whenever I'm with you.
+                            I can be myself without feeling like I have to pretend
+                            to be someone else.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🌷</span>
+
+                    <div>
+
+                        <h3>Your Kind Heart</h3>
+
+                        <p>
+                            I love how caring you are. Even in the little things,
+                            I can see how much you care about the people you love.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🤍</span>
+
+                    <div>
+
+                        <h3>Your Patience</h3>
+
+                        <p>
+                            I love how patient you can be with me,
+                            especially during the moments when I'm not at my best.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>💚</span>
+
+                    <div>
+
+                        <h3>The Way You Support Me</h3>
+
+                        <p>
+                            I love knowing that I have someone who believes in me.
+                            Your support means more to me than you probably realize.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🥺</span>
+
+                    <div>
+
+                        <h3>Your Little Efforts</h3>
+
+                        <p>
+                            It's not always the big things that make me happy.
+                            Sometimes it's the smallest things you do that stay
+                            in my heart the longest.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>✨</span>
+
+                    <div>
+
+                        <h3>The Way You Make Ordinary Days Special</h3>
+
+                        <p>
+                            Even an ordinary day feels a little more special
+                            when you're part of it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🌿</span>
+
+                    <div>
+
+                        <h3>Your Presence</h3>
+
+                        <p>
+                            I love simply having you around.
+                            Sometimes we don't even have to do anything special.
+                            Just being with you is already enough.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>❤️</span>
+
+                    <div>
+
+                        <h3>The Way You Care</h3>
+
+                        <p>
+                            I love the way you show that you care,
+                            even when you don't always say it directly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🫶</span>
+
+                    <div>
+
+                        <h3>Your Silly Side</h3>
+
+                        <p>
+                            I love your random and silly side.
+                            Those little moments when we're just being ourselves
+                            are some of my favorite memories.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🥹</span>
+
+                    <div>
+
+                        <h3>How You Keep Going</h3>
+
+                        <p>
+                            I admire how you keep trying even when things get
+                            difficult. I hope you know how proud I am of you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>💚</span>
+
+                    <div>
+
+                        <h3>The Way You Dream</h3>
+
+                        <p>
+                            I love hearing about the things you want to achieve
+                            someday. I want to be there cheering for you while
+                            you work toward them.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🌙</span>
+
+                    <div>
+
+                        <h3>Your Comfort</h3>
+
+                        <p>
+                            There are moments when just talking to you makes
+                            things feel a little lighter. You somehow became
+                            one of my favorite places to feel safe.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item">
+
+                    <span>🙏🏻</span>
+
+                    <div>
+
+                        <h3>Your Faith</h3>
+
+                        <p>
+                            I love that we can pray, hope, and trust God's timing
+                            together. I hope we continue doing that through every
+                            season of our lives.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-item love-item-final">
+
+                    <span>❤️</span>
+
+                    <div>
+
+                        <h3>The Way You Love Me</h3>
+
+                        <p>
+                            Most of all, I love the way you love me.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="love-ending">
+
+                    <h3>
+                        And Simply… You
+                    </h3>
+
+                    <p>
+                        At the end of the day, I don't think I could make
+                        a complete list of everything I love about you.
+                    </p>
+
+                    <p>
+                        Because it's not just one thing.
+                    </p>
+
+                    <p>
+                        It's your smile, your personality, your little habits,
+                        your kindness, your imperfections, your dreams,
+                        your silly moments, and even the things you don't
+                        realize I notice.
+                    </p>
+
+                    <p class="love-ending-highlight">
+                        It's all of you.
+                    </p>
+
+                    <p>
+                        And if I had to choose again, I would still choose
+                        <strong>you.</strong> 🥹💚
+                    </p>
+
+                    <p class="love-ending-monthsary">
+                        Happy 5th monthsary, babyyyyyy. I LOVE YOUUUU!!❤️
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         OUR SONG MODAL
+    ========================== -->
+
+    <div
+        class="modal song-modal"
+        id="songModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content song-content">
+
+            <button
+                class="close"
+                id="closeSong"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <!-- CIRCULAR PHOTO -->
+
+            <div class="our-photo-wrapper">
+
+                <img
+                    src="first pic wth u.jpg"
+                    alt="Our photo"
+                    class="our-photo"
+                >
+
+            </div>
+
+
+            <p class="song-label">
+                A LITTLE SONG FOR US
+            </p>
+
+            <h2>
+                PANAGINIP
+            </h2>
+
+            <p class="song-description">
+                Whenever this song plays, I hope it reminds you of us.
+            </p>
+
+
+            <!-- CHANGING MESSAGE -->
+
+            <div class="song-message-box">
+
+                <span class="message-heart">
+                    ♡
+                </span>
+
+                <p id="songMessage">
+                    A little song for a little piece of us. 💚
+                </p>
+
+            </div>
+
+
+            <!-- MUSIC PLAYER -->
+
+            <div class="music-player">
+
+                <div class="song-progress-container">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <input
+                        type="range"
+                        id="songProgress"
+                        value="0"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        aria-label="Song progress"
+                    >
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+                <button
+                    class="play-button"
+                    id="playSong"
+                    type="button"
+                    aria-label="Play song"
+                >
+                    ▶
+                </button>
+
+            </div>
+
+
+            <p
+                class="now-playing"
+                id="nowPlaying"
+            >
+                Press play when you're ready. 💚
+            </p>
+
+
+            <audio
+                id="ourSong"
+                src="panaginip.mp3"
+                preload="metadata"
+            ></audio>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         OPEN WHEN MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="openWhenModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close"
+                id="closeOpenWhen"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <span class="modal-icon">
+                💌
+            </span>
+
+            <h2>
+                Open When...
+            </h2>
+
+            <p class="modal-subtitle">
+                Pick a little letter depending on what your heart needs. 💚
+            </p>
+
+
+            <div class="letters-grid">
+
+                <button
+                    class="letter-envelope"
+                    data-letter="miss"
+                    type="button"
+                >
+
+                    <span>💗</span>
+
+                    <strong>
+                        Open when you miss me
+                    </strong>
+
+                    <small>
+                        For those moments when you need me.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="letter-envelope"
+                    data-letter="sad"
+                    type="button"
+                >
+
+                    <span>🌷</span>
+
+                    <strong>
+                        Open when you're sad
+                    </strong>
+
+                    <small>
+                        For the days that feel a little heavy.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="letter-envelope"
+                    data-letter="smile"
+                    type="button"
+                >
+
+                    <span>✨</span>
+
+                    <strong>
+                        Open when you need a smile
+                    </strong>
+
+                    <small>
+                        A tiny reminder to smile.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="letter-envelope"
+                    data-letter="remember"
+                    type="button"
+                >
+
+                    <span>🌙</span>
+
+                    <strong>
+                        Open when you want to remember us
+                    </strong>
+
+                    <small>
+                        For a little trip down memory lane.
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="letter-envelope"
+                    data-letter="love"
+                    type="button"
+                >
+
+                    <span>❤️</span>
+
+                    <strong>
+                        Open when you need to know I love you
+                    </strong>
+
+                    <small>
+                        Because sometimes you just need to hear it.
+                    </small>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INDIVIDUAL LETTER MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="individualLetterModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content letter-content">
+
+            <button
+                class="close"
+                id="closeIndividualLetter"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <span
+                class="modal-icon"
+                id="individualLetterIcon"
+            >
+                💌
+            </span>
+
+            <h2 id="individualLetterTitle">
+                A Little Letter
+            </h2>
+
+            <div
+                class="letter-text"
+                id="individualLetterText"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MY LETTER MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="letterModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-content long-letter-content">
+
+            <button
+                class="close"
+                id="closeLetter"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <span class="modal-icon">
+                💚
+            </span>
+
+            <h2>
+                My Letter
+            </h2>
+
+
+            <div class="long-letter">
+
+                <p>
+                    To My Babyyyy (damulag),
+                </p>
+
+                <p>
+                    Babyyyyy,
+                </p>
+
+                <p>
+                    Happy 5th monthsary to us. 🥹❤️
+                </p>
+
+                <p>
+                    Five months. Ang bilis talaga ng panahon, no? Parang kailan lang when everything between us was still starting, when we were still getting to know each other more, learning about each other's little habits, moods, likes, dislikes, and everything in between. And now, here we are—five months of being together, five months of memories, conversations, laughs, tampuhan, lambingan, and countless little moments that slowly became special to me.
+                </p>
+
+                <p>
+                    Honestly, I don't even know where to start because there are so many things I want to tell you. Sometimes, I wish I could just put everything I feel into words perfectly so you would know exactly how much you mean to me. But I know that no matter how long this letter becomes, there will still be feelings that are difficult to explain. So I'll just try my best to say them one by one.
+                </p>
+
+                <p>
+                    First of all, thank you.
+                </p>
+
+                <p>
+                    Thank you for choosing to stay. Thank you for being there during the good days and even during the days when things aren't as easy. Thank you for every message, every call, every "ingat ka," every "kumain ka na ba?", every random conversation, every joke, every lambing, and even those little things that you probably don't realize I notice.
+                </p>
+
+                <p>
+                    Sometimes, it's not really the big things that make me feel loved. It's the small ones. Yung simpleng pag-check mo sa akin, yung pag-aalala mo, yung way you talk to me, yung little efforts mo, and even the moments when you simply stay and spend your time with me. Those little things mean more to me than you probably know.
+                </p>
+
+                <p>
+                    I want you to know that I appreciate you—not just for the things you do for me, but for who you are.
+                </p>
+
+                <p>
+                    I love your personality. I love the way you make me laugh. I love our random conversations, even when we're literally talking about nothing. I love those moments when we can be silly together and forget about everything else for a while. I love how comfortable I feel when I'm with you.
+                </p>
+
+                <p>
+                    And yes, sometimes we don't always agree. Sometimes may tampuhan, misunderstanding, or moments na pareho tayong may sariling feelings and thoughts. We're not perfect, and I don't expect us to be. I know there will be days when we won't understand each other immediately, days when one of us gets hurt, and days when things don't go exactly the way we want them to.
+                </p>
+
+                <p>
+                    But despite all of that, I still want us.
+                </p>
+
+                <p>
+                    I want to keep learning how to understand you. I want to learn how to communicate better with you. I want to become someone who can love you not only when everything is easy, but also when things become difficult. Because for me, loving someone isn't only about the happy moments. It's also about choosing to understand, choosing to forgive, choosing to communicate, and choosing each other even after difficult days.
+                </p>
+
+                <p>
+                    I hope you know that you don't always have to be strong around me.
+                </p>
+
+                <p>
+                    If you're tired, you can rest with me. If you're sad, you can tell me. If something is bothering you, you can talk to me. If you don't feel like talking, that's okay too. You don't have to pretend that everything is fine all the time. I want to be someone you can feel safe with.
+                </p>
+
+                <p>
+                    And whenever you feel like the world is becoming too heavy, I hope you remember that you have someone here who cares about you deeply.
+                </p>
+
+                <p>
+                    I may not always know what to say or what to do, but I will always try.
+                </p>
+
+                <p>
+                    I also want to thank you for becoming part of my life during this chapter of it. There are so many things happening in our lives—school, responsibilities, plans, problems, dreams, and everything else we have to deal with. Sometimes life gets exhausting, and there are days when all I want is to take a break from everything.
+                </p>
+
+                <p>
+                    But somehow, having you makes some of those days feel a little lighter.
+                </p>
+
+                <p>
+                    Even a simple message from you can make my day better.
+                </p>
+
+                <p>
+                    Even a random conversation can make me smile.
+                </p>
+
+                <p>
+                    Even the thought of you can make me feel warm inside.
+                </p>
+
+                <p>
+                    And that's something I will always be thankful for.
+                </p>
+
+                <p>
+                    I don't know exactly what the future holds for us. We can't predict every situation, every challenge, or every change that may come our way. But what I know right now is that I am happy that you're here.
+                </p>
+
+                <p>
+                    I'm happy that I met you.
+                </p>
+
+                <p>
+                    I'm happy that we became us.
+                </p>
+
+                <p>
+                    And I'm happy that I get to make memories with you.
+                </p>
+
+                <p>
+                    Five months may only be five months, but when I look back, ang dami na rin nating moments na pwede nating balikan. Some are big, some are small, some are funny, some are random, and some might seem ordinary to other people. But to me, they're special because they're ours.
+                </p>
+
+                <p>
+                    And I hope we continue making more of them.
+                </p>
+
+                <p>
+                    I want more random conversations with you.
+                </p>
+
+                <p>
+                    More late-night talks.
+                </p>
+
+                <p>
+                    More laughs until our stomachs hurt.
+                </p>
+
+                <p>
+                    More pictures.
+                </p>
+
+                <p>
+                    More dates.
+                </p>
+
+                <p>
+                    More simple moments.
+                </p>
+
+                <p>
+                    More "ingat ka."
+                </p>
+
+                <p>
+                    More "good morning."
+                </p>
+
+                <p>
+                    More "good night."
+                </p>
+
+                <p>
+                    More stories about our day.
+                </p>
+
+                <p>
+                    More memories that we'll eventually look back on and say, "Grabe, ang dami na pala nating pinagdaanan."
+                </p>
+
+                <p>
+                    I want to experience more of life with you, one moment at a time.
+                </p>
+
+                <p>
+                    I also want you to know that I am proud of you.
+                </p>
+
+                <p>
+                    Whatever you're currently going through, whatever you're working hard for, and whatever dreams you have for yourself, I hope you never forget that someone believes in you.
+                </p>
+
+                <p>
+                    I will always be cheering for you.
+                </p>
+
+                <p>
+                    I hope you continue pursuing your dreams even when things get difficult. I hope you don't give up on yourself. And whenever you doubt yourself, I hope you remember that I see so many good things in you.
+                </p>
+
+                <p>
+                    You deserve to be happy.
+                </p>
+
+                <p>
+                    You deserve to be loved.
+                </p>
+
+                <p>
+                    You deserve to achieve the things you've been working hard for.
+                </p>
+
+                <p>
+                    And I hope someday, when we look back at where we started, we'll both be proud of how far we've come.
+                </p>
+
+                <p>
+                    I know I'm not perfect either. There are times when I overthink, times when I get emotional, times when I become difficult to understand, and times when I don't know how to properly express what I'm feeling.
+                </p>
+
+                <p>
+                    So thank you for being patient with me.
+                </p>
+
+                <p>
+                    Thank you for understanding me even when I can't explain myself properly.
+                </p>
+
+                <p>
+                    And I'm sorry for the times I've hurt you, disappointed you, or made you feel like you weren't appreciated. I never want you to feel that way. I'm still learning, and I'm still growing, but one thing I know is that I genuinely want to become better—not only for myself, but also for us.
+                </p>
+
+                <p>
+                    I want our relationship to be a place where both of us can grow.
+                </p>
+
+                <p>
+                    I don't want us to be perfect.
+                </p>
+
+                <p>
+                    I just want us to be real.
+                </p>
+
+                <p>
+                    I want us to be honest with each other.
+                </p>
+
+                <p>
+                    I want us to communicate.
+                </p>
+
+                <p>
+                    I want us to support each other's dreams.
+                </p>
+
+                <p>
+                    I want us to celebrate each other's small wins.
+                </p>
+
+                <p>
+                    I want us to be there for each other during difficult days.
+                </p>
+
+                <p>
+                    And most importantly, I want us to keep choosing each other.
+                </p>
+
+                <p>
+                    If there comes a time when things become difficult, I hope we remember why we started.
+                </p>
+
+                <p>
+                    If we ever have misunderstandings, I hope we choose to talk instead of giving up.
+                </p>
+
+                <p>
+                    If one of us gets tired, I hope the other one can be patient.
+                </p>
+
+                <p>
+                    And if life becomes busy, I hope we still find little ways to remind each other that we're loved.
+                </p>
+
+                <p>
+                    Because at the end of the day, I don't need extravagant things from you.
+                </p>
+
+                <p>
+                    I just want you.
+                </p>
+
+                <p>
+                    Your presence.
+                </p>
+
+                <p>
+                    Your time.
+                </p>
+
+                <p>
+                    Your honesty.
+                </p>
+
+                <p>
+                    Your love.
+                </p>
+
+                <p>
+                    And the little version of you that you show me when you're comfortable enough to be completely yourself.
+                </p>
+
+                <p>
+                    I hope you know how special you are to me.
+                </p>
+
+                <p>
+                    I hope you know that you have a place in my heart that no one else can simply replace.
+                </p>
+
+                <p>
+                    And I hope that whenever you see this little virtual gift, you remember that somewhere in this busy world, there is someone who took the time to create something for you because you are worth celebrating.
+                </p>
+
+                <p>
+                    This little website may not be perfect.
+                </p>
+
+                <p>
+                    The letters may not be perfect.
+                </p>
+
+                <p>
+                    The design may not be perfect.
+                </p>
+
+                <p>
+                    And maybe some of the words I'm writing aren't perfect either.
+                </p>
+
+                <p>
+                    But every single thing here was made with love.
+                </p>
+
+                <p>
+                    With my love for you.
+                </p>
+
+                <p>
+                    So, my love, thank you for these five months.
+                </p>
+
+                <p>
+                    Thank you for every memory.
+                </p>
+
+                <p>
+                    Thank you for every laugh.
+                </p>
+
+                <p>
+                    Thank you for every conversation.
+                </p>
+
+                <p>
+                    Thank you for every little effort.
+                </p>
+
+                <p>
+                    Thank you for every moment you've made me feel loved.
+                </p>
+
+                <p>
+                    And thank you simply for being you.
+                </p>
+
+                <p>
+                    I don't know how many more months, years, or chapters we'll get to experience together, but for as long as we're given the chance to make memories, I want to cherish them.
+                </p>
+
+                <p>
+                    I want to appreciate the little things.
+                </p>
+
+                <p>
+                    I want to laugh with you.
+                </p>
+
+                <p>
+                    I want to grow with you.
+                </p>
+
+                <p>
+                    I want to support you.
+                </p>
+
+                <p>
+                    I want to love you.
+                </p>
+
+                <p>
+                    And I want to keep making our own little story.
+                </p>
+
+                <p>
+                    So here's to our 5th month.
+                </p>
+
+                <p>
+                    Here's to the five months we've already shared.
+                </p>
+
+                <p>
+                    Here's to everything we've learned.
+                </p>
+
+                <p>
+                    Here's to every memory we've created.
+                </p>
+
+                <p>
+                    And here's to all the memories that are still waiting for us.
+                </p>
+
+                <p>
+                    I love you more than I can properly put into words.
+                </p>
+
+                <p>
+                    And if I had the chance to go back to the beginning and choose again, I would still choose you.
+                </p>
+
+                <p>
+                    Again.
+                </p>
+
+                <p>
+                    And again.
+                </p>
+
+                <p>
+                    And again.
+                </p>
+
+                <p>
+                    Happy 5th monthsary, babyyyy. 🥹❤️
+                </p>
+
+                <p>
+                    Thank you for being one of the most beautiful parts of my life.
+                </p>
+
+                <p>
+                    I love you. Always. In all ways! ❤️
+                </p>
+
+                <p class="signature">
+                    — Your Pretty Wife
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FLOATING HEARTS
+    ========================== -->
+
+    <div
+        class="floating-hearts"
+        aria-hidden="true"
+    >
+
+        <span>♡</span>
+        <span>💚</span>
+        <span>♡</span>
+        <span>🌿</span>
+        <span>♡</span>
+        <span>💚</span>
+        <span>♡</span>
+        <span>🌷</span>
+
+    </div>
+
+
+    <!-- MEMORY PHOTO LIGHTBOX -->
+
+    <div
+        class="memory-lightbox"
+        id="memoryLightbox"
+        aria-hidden="true"
+    >
+
+        <button
+            class="memory-lightbox-close"
+            id="closeMemoryLightbox"
+            type="button"
+            aria-label="Close enlarged memory"
+        >
+            ×
+        </button>
+
+        <img
+            id="memoryLightboxImage"
+            src=""
+            alt="Enlarged memory"
+        >
+
+    </div>
+
+
+    <!-- ONLY ONE SCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

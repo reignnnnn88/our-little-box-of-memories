@@ -1,0 +1,7800 @@
+/* ==================================================
+   GLOBAL
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #294334;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.9),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #edf8ef,
+            #dcefe1,
+            #f6fbf5
+        );
+}
+
+button,
+input {
+    font: inherit;
+}
+
+/* ==================================================
+   PAGE
+================================================== */
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 45px 20px 80px;
+}
+
+/* ==================================================
+   INTRO
+================================================== */
+
+.intro {
+    width: min(760px, 100%);
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.small-title {
+    margin-bottom: 12px;
+    color: #6b9275;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.intro h1 {
+    margin-bottom: 12px;
+    color: #315b3e;
+    font-family: Georgia, serif;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    line-height: 1.05;
+}
+
+.monthsary {
+    margin-bottom: 16px;
+    color: #52765c;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+}
+
+.intro-text {
+    width: min(620px, 100%);
+    margin: 0 auto;
+    color: #587060;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.instruction {
+    margin-top: 20px;
+    color: #6c9076;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+/* ==================================================
+   BIG GIFT
+================================================== */
+
+.main-gift-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 310px;
+}
+
+.big-gift {
+    position: relative;
+    width: 210px;
+    height: 180px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.35s ease;
+}
+
+.big-gift:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.big-gift:active {
+    transform: scale(0.96);
+}
+
+/* BOX BODY */
+
+.gift-body {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 10px;
+    height: 130px;
+    border-radius: 10px;
+    background:
+        linear-gradient(
+            135deg,
+            #82aa8c,
+            #5d896a
+        );
+    box-shadow:
+        0 20px 35px rgba(58, 91, 65, 0.25);
+    overflow: hidden;
+}
+
+/* BOX LID */
+
+.gift-lid {
+    position: absolute;
+    z-index: 3;
+    top: 30px;
+    left: 5px;
+    width: 200px;
+    height: 45px;
+    border-radius: 9px;
+    background:
+        linear-gradient(
+            135deg,
+            #9fc6a7,
+            #709b79
+        );
+    box-shadow:
+        0 8px 15px rgba(58, 91, 65, 0.2);
+    transition:
+        transform 0.7s ease,
+        top 0.7s ease;
+}
+
+/* RIBBON */
+
+.gift-ribbon.vertical {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 32px;
+    transform: translateX(-50%);
+    background: rgba(242, 249, 242, 0.75);
+}
+
+.gift-ribbon.horizontal {
+    position: absolute;
+    top: 48%;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background: rgba(242, 249, 242, 0.75);
+}
+
+/* BOW */
+
+.gift-bow {
+    position: absolute;
+    z-index: 4;
+    top: 5px;
+    width: 55px;
+    height: 42px;
+    border: 7px solid #f2f8f2;
+    border-radius: 50%;
+    background: #7ba783;
+    box-shadow:
+        0 4px 8px rgba(45, 78, 52, 0.15);
+}
+
+.gift-bow.left {
+    left: 45px;
+    transform: rotate(-25deg);
+}
+
+.gift-bow.right {
+    right: 45px;
+    transform: rotate(25deg);
+}
+
+/* OPEN ANIMATION */
+
+.big-gift.open .gift-lid {
+    top: -30px;
+    transform:
+        rotate(-7deg)
+        translateX(-8px);
+}
+
+.big-gift.open {
+    animation: giftBounce 0.7s ease;
+}
+
+@keyframes giftBounce {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.08);
+    }
+
+    70% {
+        transform: scale(0.98);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ==================================================
+   FIVE MINI GIFT BOXES
+================================================== */
+
+.gifts-container {
+    width: min(1150px, 100%);
+    margin: 25px auto 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(25px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.gifts-container.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ==================================================
+   MINI GIFT CLICKABLE AREA
+================================================== */
+
+.gift {
+    --gift-main: #78a884;
+    --gift-light: #a8cbb0;
+    --gift-dark: #5b8365;
+
+    position: relative;
+    min-width: 0;
+    min-height: 285px;
+    padding: 125px 18px 22px;
+    border: 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    text-align: center;
+    overflow: visible;
+
+    box-shadow:
+        0 8px 0 rgba(72, 108, 79, 0.12),
+        0 18px 30px rgba(49, 83, 57, 0.12);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        filter 0.35s ease;
+}
+
+/* ==================================================
+   MINI GIFT VISUAL
+================================================== */
+
+.mini-gift-visual {
+    position: absolute;
+    top: 27px;
+    left: 50%;
+    width: 145px;
+    height: 96px;
+    transform: translateX(-50%);
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 10px 12px rgba(49, 83, 57, 0.20)
+        );
+}
+
+/* MINI GIFT BODY */
+
+.mini-gift-body {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 0;
+    height: 72px;
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gift-light),
+            var(--gift-main) 50%,
+            var(--gift-dark)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.38);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -10px 18px rgba(38, 72, 45, 0.08);
+}
+
+/* MINI GIFT LID */
+
+.mini-gift-lid {
+    position: absolute;
+    z-index: 3;
+    top: 12px;
+    left: 2px;
+    width: 141px;
+    height: 27px;
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b6d4bc,
+            var(--gift-light) 55%,
+            var(--gift-main)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow:
+        0 4px 6px rgba(49, 83, 57, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* MINI VERTICAL RIBBON */
+
+.mini-gift-ribbon {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: 0;
+    width: 21px;
+    height: 84px;
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(238, 248, 240, 0.72),
+            rgba(255, 255, 255, 0.90),
+            rgba(238, 248, 240, 0.72)
+        );
+
+    box-shadow:
+        inset 1px 0 rgba(255, 255, 255, 0.28),
+        inset -1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* MINI BOW */
+
+.mini-gift-bow {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    width: 39px;
+    height: 27px;
+
+    border:
+        5px solid rgba(247, 251, 247, 0.96);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a0c4a7,
+            var(--gift-dark)
+        );
+
+    box-shadow:
+        0 3px 6px rgba(45, 78, 52, 0.17),
+        inset 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+.mini-gift-bow.left {
+    left: 34px;
+    transform: rotate(-28deg);
+}
+
+.mini-gift-bow.right {
+    right: 34px;
+    transform: rotate(28deg);
+}
+
+/* BOW CENTER */
+
+.mini-gift-visual::after {
+    content: "";
+    position: absolute;
+    z-index: 7;
+    top: 7px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b7d6bd,
+            #6d9876
+        );
+
+    border:
+        3px solid rgba(247, 251, 247, 0.95);
+
+    box-shadow:
+        0 3px 5px rgba(45, 78, 52, 0.15);
+}
+
+/* ==================================================
+   MINI GIFT CONTENT
+================================================== */
+
+.gift-icon {
+    position: relative;
+    z-index: 8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 45px;
+    margin-bottom: 9px;
+
+    font-size: 2.2rem;
+
+    text-shadow:
+        0 3px 6px rgba(45, 75, 52, 0.22);
+
+    filter:
+        drop-shadow(
+            0 3px 4px rgba(45, 75, 52, 0.16)
+        );
+
+    transition:
+        transform 0.35s ease;
+}
+
+.gift-title {
+    position: relative;
+    z-index: 8;
+    display: block;
+    margin-bottom: 7px;
+
+    color: #315b3e;
+    font-family: Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.gift-description {
+    position: relative;
+    z-index: 8;
+    display: block;
+    max-width: 170px;
+
+    color: #5c7463;
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+/* ==================================================
+   MINI GIFT HOVER
+================================================== */
+
+.gift:hover {
+    transform:
+        translateY(-10px)
+        scale(1.025);
+
+    filter: brightness(1.03);
+
+    box-shadow:
+        0 10px 0 rgba(68, 105, 76, 0.12),
+        0 28px 42px rgba(49, 83, 57, 0.22);
+}
+
+.gift:hover .mini-gift-visual {
+    transform:
+        translateX(-50%)
+        translateY(-5px);
+}
+
+.gift:hover .gift-icon {
+    transform:
+        translateY(-3px)
+        scale(1.06);
+}
+
+.gift:active {
+    transform:
+        translateY(-3px)
+        scale(0.98);
+}
+
+/* ==================================================
+   INDIVIDUAL GIFT COLORS
+================================================== */
+
+.memory-gift {
+    --gift-light: #a8cdb0;
+    --gift-main: #80a98a;
+    --gift-dark: #5d8567;
+}
+
+.love-gift {
+    --gift-light: #b1d2b8;
+    --gift-main: #87ad91;
+    --gift-dark: #648b6e;
+}
+
+.song-gift {
+    --gift-light: #a0c8a8;
+    --gift-main: #78a282;
+    --gift-dark: #567e61;
+}
+
+.open-when-gift {
+    --gift-light: #acd0b4;
+    --gift-main: #82a98b;
+    --gift-dark: #60886a;
+}
+
+.letter-gift {
+    --gift-light: #b5d4bb;
+    --gift-main: #8aae92;
+    --gift-dark: #668e70;
+}
+
+/* ==================================================
+   MODAL
+================================================== */
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(35, 64, 42, 0.42);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    width: min(650px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 48px 30px 30px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.75);
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f3faf4
+        );
+
+    box-shadow:
+        0 25px 70px rgba(36, 69, 44, 0.30);
+
+    transform:
+        translateY(20px)
+        scale(0.97);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.modal.show .modal-content {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.close {
+    position: absolute;
+    z-index: 10;
+    top: 14px;
+    right: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #e6f2e8;
+    color: #4c7055;
+
+    font-size: 1.5rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.close:hover {
+    transform:
+        rotate(8deg)
+        scale(1.05);
+
+    background: #d8ebdb;
+}
+
+.modal-icon {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+
+    color: #315b3e;
+    font-family: Georgia, serif;
+    font-size: clamp(1.6rem, 5vw, 2.3rem);
+
+    text-align: center;
+}
+
+.modal-subtitle {
+    margin-bottom: 20px;
+    color: #687b6d;
+    line-height: 1.7;
+    text-align: center;
+}
+
+/* ==================================================
+   OUR MEMORIES GALLERY
+================================================== */
+
+.memories-modal-content {
+    width: min(1000px, 100%);
+}
+
+.memory-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.memory-gallery img,
+.memory-gallery video {
+    display: block;
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    background: #dfeee1;
+
+    border:
+        3px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 8px 18px rgba(55, 90, 65, 0.16);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+.memory-gallery img:hover,
+.memory-gallery video:hover {
+    transform:
+        translateY(-5px)
+        scale(1.02);
+
+    box-shadow:
+        0 14px 28px rgba(55, 90, 65, 0.25);
+
+    filter: brightness(1.03);
+}
+
+.memory-gallery video {
+    cursor: pointer;
+}
+
+/* ==================================================
+   OUR MEMORIES — MAIN SLIDESHOW BOX
+================================================== */
+
+#memoryModal .memory-slideshow {
+    position: relative;
+    overflow: hidden;
+
+    padding: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(235, 248, 238, 0.95),
+            rgba(255, 255, 255, 0.97)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.20);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 9px 25px rgba(70, 110, 80, 0.09);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-slideshow:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(82, 145, 96, 0.27);
+
+    box-shadow:
+        0 12px 30px rgba(70, 110, 80, 0.12);
+}
+
+/* ==================================================
+   OUR MEMORIES — PHOTO FRAME POLISH
+================================================== */
+
+#memoryModal .memory-slide-frame {
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    box-shadow:
+        0 7px 20px rgba(70, 110, 80, 0.08);
+}
+
+#memoryModal .memory-slide-frame::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+
+    pointer-events: none;
+}
+
+#memoryModal #memorySlideImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 16px;
+
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
+}
+
+#memoryModal .memory-slide-frame:hover #memorySlideImage {
+    transform: scale(1.015);
+}
+
+/* ==================================================
+   OUR MEMORIES — SLIDE INFORMATION
+================================================== */
+
+#memoryModal .memory-slide-info {
+    margin-top: 16px;
+    padding: 17px 18px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 16px rgba(70, 110, 80, 0.05);
+}
+
+#memoryModal #memorySlideCounter {
+    display: inline-block;
+
+    margin-bottom: 7px;
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(91, 147, 101, 0.09);
+
+    color: #5b9365;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+#memoryModal #memorySlideTitle {
+    margin: 2px 0 7px;
+
+    color: #426b4d;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+#memoryModal #memorySlideDescription {
+    max-width: 520px;
+
+    margin: 0 auto;
+
+    color: #66756b;
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+/* ==================================================
+   OUR MEMORIES — SLIDESHOW CONTROLS
+================================================== */
+
+#memoryModal .memory-slide-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+#memoryModal .memory-nav-button,
+#memoryModal .memory-play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    color: #426b4d;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    box-shadow:
+        0 5px 14px rgba(70, 110, 80, 0.07);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-nav-button {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 1.5rem;
+}
+
+#memoryModal .memory-play-button {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    background: #5b9365;
+
+    border-color: #5b9365;
+
+    font-size: 1rem;
+
+    box-shadow:
+        0 7px 17px rgba(70, 110, 80, 0.16);
+}
+
+#memoryModal .memory-nav-button:hover {
+    transform: translateY(-2px);
+
+    color: #426b4d;
+
+    background:
+        rgba(232, 247, 235, 0.95);
+
+    border-color:
+        rgba(82, 145, 96, 0.24);
+
+    box-shadow:
+        0 8px 18px rgba(70, 110, 80, 0.10);
+}
+
+#memoryModal .memory-play-button:hover {
+    transform: translateY(-2px);
+
+    background: #4f8459;
+
+    box-shadow:
+        0 10px 21px rgba(70, 110, 80, 0.20);
+}
+
+#memoryModal .memory-nav-button:active,
+#memoryModal .memory-play-button:active {
+    transform: scale(0.93);
+}
+
+#memoryModal .memory-nav-button:focus-visible,
+#memoryModal .memory-play-button:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.30);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   OUR MEMORIES — PROGRESS BAR
+================================================== */
+
+#memoryModal .memory-progress {
+    width: 100%;
+    height: 5px;
+
+    margin-top: 18px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background:
+        rgba(82, 145, 96, 0.12);
+}
+
+#memoryModal .memory-progress-bar {
+    height: 100%;
+    width: 0;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6da878,
+            #5b9365,
+            #4f8459
+        );
+
+    box-shadow:
+        0 2px 7px rgba(70, 110, 80, 0.14);
+
+    transition:
+        width 0.4s ease;
+}
+
+/* ==================================================
+   OUR MEMORIES — SHOW FULL PHOTO
+================================================== */
+
+#memoryModal .memory-slide-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 300px;
+
+    background:
+        rgba(245, 250, 246, 0.95);
+}
+
+#memoryModal #memorySlideImage {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 100%;
+    max-height: 70vh;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+}
+
+/* ==================================================
+   OUR MEMORIES — PHOTO FRAME BALANCE
+================================================== */
+
+#memoryModal .memory-slide-frame {
+    min-height: 320px;
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(238, 248, 240, 0.96),
+            rgba(255, 255, 255, 0.98)
+        );
+
+    border-radius: 18px;
+}
+
+#memoryModal #memorySlideImage {
+    max-height: 68vh;
+
+    object-fit: contain;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 18px rgba(70, 110, 80, 0.08);
+}
+
+/* ==================================================
+   OUR MEMORIES — MOBILE PHOTO FRAME
+================================================== */
+
+@media (max-width: 600px) {
+
+    #memoryModal .memory-slide-frame {
+        min-height: 220px;
+        padding: 7px;
+
+        border-radius: 15px;
+    }
+
+    #memoryModal #memorySlideImage {
+        width: 100%;
+        max-width: 100%;
+        max-height: 55vh;
+
+        object-fit: contain;
+
+        border-radius: 12px;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — GALLERY PHOTO CARDS
+================================================== */
+
+#memoryModal .memory-gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(105px, 1fr));
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+#memoryModal .memory-gallery img {
+    display: block;
+
+    width: 100%;
+    height: 105px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    background:
+        rgba(245, 250, 246, 0.95);
+
+    box-shadow:
+        0 4px 12px rgba(70, 110, 80, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-gallery img:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    border-color:
+        rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 8px 18px rgba(70, 110, 80, 0.11);
+}
+
+/* ==================================================
+   OUR MEMORIES — GALLERY VIDEOS
+================================================== */
+
+#memoryModal .memory-gallery video {
+    display: block;
+
+    width: 100%;
+    height: 105px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    background:
+        rgba(245, 250, 246, 0.95);
+
+    box-shadow:
+        0 4px 12px rgba(70, 110, 80, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-gallery video:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    border-color:
+        rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 8px 18px rgba(70, 110, 80, 0.11);
+}
+
+/* ==================================================
+   OUR MEMORIES — GALLERY SECTION
+================================================== */
+
+#memoryModal .memory-gallery {
+    position: relative;
+
+    margin-top: 28px;
+    padding-top: 24px;
+}
+
+#memoryModal .memory-gallery::before {
+    content: "A LITTLE GALLERY OF US 💚";
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    text-align: center;
+
+    color: #5b9365;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+#memoryModal .memory-gallery::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+    right: 15%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(91, 147, 101, 0.25),
+            transparent
+        );
+}
+
+/* ==================================================
+   OUR MEMORIES — SEPARATE PICTURES & VIDEOS
+================================================== */
+
+#memoryModal .memory-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    margin-top: 28px;
+}
+
+#memoryModal .memory-gallery-section {
+    width: 100%;
+}
+
+/* SECTION TITLES */
+
+#memoryModal .memory-gallery-title {
+    margin: 0 0 16px;
+
+    text-align: center;
+
+    color: #426b4d;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+}
+
+/* PICTURES */
+
+#memoryModal .memory-photo-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(105px, 1fr));
+
+    gap: 10px;
+}
+
+#memoryModal .memory-photo-grid img {
+    display: block;
+
+    width: 100%;
+    height: 105px;
+
+    object-fit: cover;
+
+    border-radius: 13px;
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    background: rgba(245, 250, 246, 0.95);
+
+    box-shadow:
+        0 4px 12px rgba(70, 110, 80, 0.06);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-photo-grid img:hover {
+    transform: translateY(-3px) scale(1.02);
+
+    border-color:
+        rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 8px 18px rgba(70, 110, 80, 0.11);
+}
+
+/* VIDEOS */
+
+#memoryModal .memory-video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 16px;
+}
+
+#memoryModal .memory-video-grid video {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    min-height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    background: #f5faf6;
+
+    box-shadow:
+        0 6px 18px rgba(70, 110, 80, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#memoryModal .memory-video-grid video:hover {
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 10px 24px rgba(70, 110, 80, 0.12);
+}
+
+/* ==================================================
+   OUR MEMORIES — SECTION CARDS
+================================================== */
+
+#memoryModal .memory-gallery-section {
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(248, 252, 249, 0.96),
+            rgba(255, 255, 255, 0.98)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 6px 18px rgba(70, 110, 80, 0.06);
+}
+
+#memoryModal .memory-gallery-title {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid rgba(82, 145, 96, 0.12);
+}
+
+#memoryModal .memory-gallery-title::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+
+    width: 55px;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: #6da878;
+}
+
+/* ==================================================
+   OUR MEMORIES — PICTURE GRID POLISH
+================================================== */
+
+#memoryModal .memory-photo-grid {
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+#memoryModal .memory-photo-grid img {
+    aspect-ratio: 1 / 1;
+
+    height: auto;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    #memoryModal .memory-photo-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+}
+
+/* PHONE */
+
+@media (max-width: 600px) {
+
+    #memoryModal .memory-photo-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 8px;
+    }
+
+    #memoryModal .memory-photo-grid img {
+        border-radius: 11px;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — VIDEO GRID POLISH
+================================================== */
+
+#memoryModal .memory-video-grid {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+#memoryModal .memory-video-grid video {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+
+    min-height: 0;
+    height: auto;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    background: #eef7f0;
+
+    box-shadow:
+        0 6px 18px rgba(70, 110, 80, 0.08);
+}
+
+/* TABLET / PHONE */
+
+@media (max-width: 700px) {
+
+    #memoryModal .memory-video-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    #memoryModal .memory-video-grid video {
+        aspect-ratio: 16 / 10;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — SECTION HEADER POLISH
+================================================== */
+
+#memoryModal .memory-gallery-section:first-child .memory-gallery-title {
+    color: #4f8459;
+}
+
+#memoryModal .memory-gallery-section:last-child .memory-gallery-title {
+    color: #426b4d;
+}
+
+#memoryModal .memory-gallery-section:first-child .memory-gallery-title::before {
+    content: "65 MEMORIES";
+    
+    position: absolute;
+    left: 0;
+
+    color: #8aaa91;
+
+    font-size: 0.62rem;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+}
+
+#memoryModal .memory-gallery-section:last-child .memory-gallery-title::before {
+    content: "5 VIDEOS";
+
+    position: absolute;
+    left: 0;
+
+    color: #8aaa91;
+
+    font-size: 0.62rem;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+}
+
+@media (max-width: 600px) {
+
+    #memoryModal .memory-gallery-section:first-child .memory-gallery-title::before,
+    #memoryModal .memory-gallery-section:last-child .memory-gallery-title::before {
+        position: static;
+
+        margin-right: 4px;
+
+        font-size: 0.58rem;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — MOBILE SLIDESHOW POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #memoryModal .memory-slideshow {
+        padding: 10px;
+
+        border-radius: 17px;
+    }
+
+    #memoryModal .memory-slide-frame {
+        min-height: 200px;
+
+        padding: 7px;
+
+        border-radius: 14px;
+    }
+
+    #memoryModal #memorySlideImage {
+        width: auto;
+        max-width: 100%;
+        max-height: 55vh;
+
+        object-fit: contain;
+
+        margin: 0 auto;
+
+        border-radius: 12px;
+    }
+
+    #memoryModal .memory-slide-info {
+        margin-top: 12px;
+        padding: 14px 13px;
+
+        border-radius: 14px;
+    }
+
+    #memoryModal #memorySlideTitle {
+        font-size: 1rem;
+    }
+
+    #memoryModal #memorySlideDescription {
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+    #memoryModal .memory-slide-controls {
+        margin-top: 14px;
+        gap: 9px;
+    }
+
+    #memoryModal .memory-nav-button {
+        width: 38px;
+        height: 38px;
+
+        font-size: 1.3rem;
+    }
+
+    #memoryModal .memory-play-button {
+        width: 46px;
+        height: 46px;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — SLIDESHOW BUTTON POLISH
+================================================== */
+
+#memoryModal .memory-nav-button,
+#memoryModal .memory-play-button {
+    -webkit-tap-highlight-color: transparent;
+
+    user-select: none;
+}
+
+#memoryModal .memory-nav-button {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(237, 248, 240, 0.96)
+        );
+}
+
+#memoryModal .memory-nav-button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(226, 244, 230, 0.98),
+            rgba(255, 255, 255, 0.98)
+        );
+}
+
+#memoryModal .memory-play-button {
+    background:
+        linear-gradient(
+            145deg,
+            #6da878,
+            #4f8459
+        );
+
+    border-color: transparent;
+}
+
+#memoryModal .memory-play-button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #78b582,
+            #5b9365
+        );
+}
+
+#memoryModal .memory-play-button:focus-visible,
+#memoryModal .memory-nav-button:focus-visible {
+    outline: 2px solid rgba(91, 147, 101, 0.35);
+    outline-offset: 4px;
+}   
+
+/* ==================================================
+   OUR MEMORIES — SLIDESHOW IMAGE TRANSITION
+================================================== */
+
+#memoryModal #memorySlideImage {
+    opacity: 1;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.45s ease;
+}
+
+#memoryModal #memorySlideImage.memory-changing {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+#memoryModal .memory-slide-info {
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+#memoryModal .memory-slide-info.memory-changing {
+    opacity: 0;
+    transform: translateY(5px);
+}
+
+/* ==================================================
+   OUR MEMORIES — MEMORY COUNTER POLISH
+================================================== */
+
+#memoryModal #memorySlideCounter {
+    position: relative;
+
+    min-width: 58px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(231, 246, 234, 0.96),
+            rgba(248, 252, 249, 0.98)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    box-shadow:
+        0 3px 9px rgba(70, 110, 80, 0.06);
+
+    color: #4f8459;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+/* ==================================================
+   OUR MEMORIES — SLIDESHOW TO GALLERY SPACING
+================================================== */
+
+#memoryModal .memory-slideshow {
+    margin-bottom: 34px;
+}
+
+#memoryModal .memory-gallery {
+    margin-top: 0;
+}
+
+@media (max-width: 600px) {
+
+    #memoryModal .memory-slideshow {
+        margin-bottom: 26px;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — LONG CONTENT MODAL
+================================================== */
+
+#memoryModal .memories-modal-content {
+    width: min(94vw, 900px);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 28px 24px 32px;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(91, 147, 101, 0.35)
+        transparent;
+}
+
+#memoryModal .memories-modal-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+#memoryModal .memories-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#memoryModal .memories-modal-content::-webkit-scrollbar-thumb {
+    background:
+        rgba(91, 147, 101, 0.32);
+
+    border-radius: 999px;
+}
+
+#memoryModal .memories-modal-content::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(91, 147, 101, 0.48);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    #memoryModal .memories-modal-content {
+        width: 94vw;
+
+        max-height: 92vh;
+
+        padding: 22px 14px 26px;
+
+        border-radius: 20px;
+    }
+
+}
+
+/* ==================================================
+   OUR MEMORIES — CLOSE BUTTON
+================================================== */
+
+#memoryModal .close {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(238, 248, 240, 0.92);
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    color: #426b4d;
+
+    font-size: 1.35rem;
+    line-height: 1;
+
+    box-shadow:
+        0 4px 12px rgba(70, 110, 80, 0.07);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#memoryModal .close:hover {
+    transform: rotate(90deg) scale(1.05);
+
+    background:
+        rgba(224, 242, 228, 0.98);
+
+    color: #355d40;
+
+    box-shadow:
+        0 7px 16px rgba(70, 110, 80, 0.11);
+}
+
+#memoryModal .close:active {
+    transform: rotate(90deg) scale(0.92);
+}
+
+#memoryModal .close:focus-visible {
+    outline: 2px solid rgba(91, 147, 101, 0.35);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   THINGS I LOVE ABOUT YOU — IMPROVED DESIGN
+================================================== */
+
+.love-modal-content {
+    max-width: 760px;
+}
+
+.love-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.love-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(90, 150, 110, 0.16);
+    box-shadow: 0 6px 18px rgba(70, 110, 80, 0.08);
+    text-align: left;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.love-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(70, 110, 80, 0.13);
+}
+
+.love-item > span {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(105, 170, 120, 0.12);
+    font-size: 1.35rem;
+}
+
+.love-item h3 {
+    margin: 0 0 6px;
+    color: #426b4d;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.love-item p {
+    margin: 0;
+    color: #5d6d61;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.love-item-final {
+    background: rgba(231, 246, 234, 0.85);
+    border: 1px solid rgba(82, 145, 96, 0.2);
+}
+
+.love-item-final > span {
+    background: rgba(82, 145, 96, 0.14);
+}
+
+.love-ending {
+    margin-top: 24px;
+    padding: 28px 24px;
+    border-radius: 22px;
+    background: linear-gradient(
+        145deg,
+        rgba(232, 247, 235, 0.95),
+        rgba(255, 255, 255, 0.95)
+    );
+    border: 1px solid rgba(82, 145, 96, 0.18);
+    text-align: center;
+    box-shadow: 0 10px 28px rgba(70, 110, 80, 0.1);
+}
+
+.love-ending-icon {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+
+.love-ending h3 {
+    margin: 0 0 14px;
+    color: #426b4d;
+    font-size: 1.35rem;
+}
+
+.love-ending p {
+    max-width: 600px;
+    margin: 0 auto 12px;
+    color: #5d6d61;
+    line-height: 1.75;
+    font-size: 0.96rem;
+}
+
+.love-ending-highlight {
+    margin-top: 18px !important;
+    color: #426b4d !important;
+    font-size: 1.15rem !important;
+    font-weight: 700;
+}
+
+.love-ending-monthsary {
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+    color: #426b4d !important;
+    font-weight: 700;
+}
+
+
+/* ==================================================
+   MOBILE RESPONSIVE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .love-modal-content {
+        width: calc(100% - 24px);
+        max-height: 88vh;
+    }
+
+    .love-list {
+        gap: 11px;
+        margin-top: 20px;
+    }
+
+    .love-item {
+        gap: 12px;
+        padding: 15px;
+        border-radius: 16px;
+    }
+
+    .love-item > span {
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
+    }
+
+    .love-item h3 {
+        font-size: 0.98rem;
+    }
+
+    .love-item p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .love-ending {
+        margin-top: 18px;
+        padding: 22px 17px;
+        border-radius: 18px;
+    }
+
+    .love-ending h3 {
+        font-size: 1.2rem;
+    }
+
+    .love-ending p {
+        font-size: 0.9rem;
+        line-height: 1.65;
+    }
+
+    .love-ending-icon {
+        font-size: 1.7rem;
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — SOFT ENTRANCE ANIMATION
+================================================== */
+
+.love-item {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: loveItemReveal 0.6s ease forwards;
+}
+
+.love-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.love-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.love-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.love-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.love-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.love-item:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.love-item:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.love-item:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.love-item:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.love-item:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.love-item:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.love-item:nth-child(12) {
+    animation-delay: 0.6s;
+}
+
+.love-item:nth-child(13) {
+    animation-delay: 0.65s;
+}
+
+.love-item:nth-child(14) {
+    animation-delay: 0.7s;
+}
+
+.love-item:nth-child(15) {
+    animation-delay: 0.75s;
+}
+
+.love-ending {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: loveEndingReveal 0.8s ease 0.85s forwards;
+}
+
+@keyframes loveItemReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loveEndingReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — HEART GLOW
+================================================== */
+
+.love-gift .gift-icon {
+    display: inline-block;
+    animation: loveHeartPulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes loveHeartPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(80, 150, 95, 0));
+    }
+
+    50% {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 8px rgba(80, 150, 95, 0.35));
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — LOVE ITEM POLISH
+================================================== */
+
+#loveModal .love-item {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+
+    padding: 17px 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(242, 249, 244, 0.88)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 5px 16px rgba(70, 110, 80, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#loveModal .love-item:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(82, 145, 96, 0.20);
+
+    box-shadow:
+        0 9px 22px rgba(70, 110, 80, 0.10);
+}
+
+#loveModal .love-item > span {
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91, 147, 101, 0.09);
+
+    font-size: 1.15rem;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+#loveModal .love-item:hover > span {
+    transform: scale(1.08);
+
+    background:
+        rgba(91, 147, 101, 0.14);
+}
+
+#loveModal .love-item h3 {
+    margin: 1px 0 5px;
+
+    color: #426b4d;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+#loveModal .love-item p {
+    margin: 0;
+
+    color: #66756b;
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+ /* ==================================================
+   THINGS I LOVE — ENDING SECTION
+================================================== */
+
+#loveModal .love-ending {
+    position: relative;
+
+    margin-top: 28px;
+    padding: 28px 24px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(232, 247, 235, 0.78),
+            rgba(255, 255, 255, 0.94)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.16);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 9px 25px rgba(70, 110, 80, 0.08);
+}
+
+#loveModal .love-ending::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 55px;
+    height: 3px;
+
+    transform: translateX(-50%);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(91, 147, 101, 0.12),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.12)
+        );
+}
+
+#loveModal .love-ending-icon {
+    display: flex;
+
+    width: 46px;
+    height: 46px;
+
+    margin: 0 auto 10px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91, 147, 101, 0.10);
+
+    font-size: 1.25rem;
+}
+
+#loveModal .love-ending h3 {
+    margin: 0 0 14px;
+
+    color: #426b4d;
+
+    font-size: 1.25rem;
+}
+
+#loveModal .love-ending p {
+    max-width: 500px;
+
+    margin: 0 auto 11px;
+
+    color: #66756b;
+
+    font-size: 0.9rem;
+    line-height: 1.75;
+}
+
+#loveModal .love-ending-highlight {
+    margin-top: 17px !important;
+
+    color: #426b4d !important;
+
+    font-size: 1.05rem !important;
+    font-weight: 700;
+
+    font-style: italic;
+}
+
+#loveModal .love-ending-monthsary {
+    margin-top: 20px !important;
+
+    color: #4f7f59 !important;
+
+    font-weight: 700;
+
+    font-size: 0.95rem !important;
+}
+
+/* ==================================================
+   THINGS I LOVE — FINAL LOVE ITEM
+================================================== */
+
+#loveModal .love-item-final {
+    position: relative;
+
+    margin-top: 8px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(235, 248, 238, 0.95),
+            rgba(255, 255, 255, 0.96)
+        );
+
+    border-color: rgba(82, 145, 96, 0.20);
+
+    box-shadow:
+        0 8px 22px rgba(70, 110, 80, 0.09);
+}
+
+#loveModal .love-item-final::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 14px;
+    bottom: 14px;
+
+    width: 3px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(91, 147, 101, 0.15),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.15)
+        );
+}
+
+#loveModal .love-item-final > span {
+    background:
+        rgba(91, 147, 101, 0.14);
+}
+
+#loveModal .love-item-final h3 {
+    color: #3f6f4b;
+}
+
+/* ==================================================
+   THINGS I LOVE — HEADER POLISH
+================================================== */
+
+#loveModal .modal-icon {
+    display: flex;
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 10px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(91, 147, 101, 0.09);
+
+    box-shadow:
+        0 5px 14px rgba(70, 110, 80, 0.07);
+
+    font-size: 1.35rem;
+}
+
+#loveModal h2 {
+    margin-bottom: 9px;
+
+    color: #426b4d;
+
+    font-size: 1.7rem;
+}
+
+#loveModal h2::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 2px;
+
+    margin: 9px auto 0;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(91, 147, 101, 0.10),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.10)
+        );
+}
+
+#loveModal .modal-subtitle {
+    max-width: 480px;
+
+    margin: 0 auto 22px;
+
+    color: #6a786e;
+
+    font-size: 0.9rem;
+
+    line-height: 1.65;
+}
+
+/* ==================================================
+   THINGS I LOVE — LIST SPACING
+================================================== */
+
+#loveModal .love-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#loveModal .love-item {
+    margin: 0;
+}
+
+#loveModal .love-ending {
+    margin-top: 18px;
+}
+
+/* ==================================================
+   THINGS I LOVE — SMOOTH SCROLL
+================================================== */
+
+#loveModal .love-modal-content {
+    scroll-behavior: smooth;
+}
+
+#loveModal .love-list {
+    scroll-margin-top: 20px;
+}
+
+/* ==================================================
+   THINGS I LOVE — MOBILE POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #loveModal .love-modal-content {
+        width: calc(100% - 20px);
+        max-height: 88vh;
+
+        padding: 22px 16px;
+
+        border-radius: 20px;
+    }
+
+    #loveModal .modal-icon {
+        width: 42px;
+        height: 42px;
+
+        margin-bottom: 9px;
+
+        font-size: 1.2rem;
+    }
+
+    #loveModal h2 {
+        font-size: 1.4rem;
+
+        line-height: 1.35;
+    }
+
+    #loveModal .modal-subtitle {
+        margin-bottom: 18px;
+
+        font-size: 0.82rem;
+        line-height: 1.6;
+    }
+
+    #loveModal .love-list {
+        gap: 10px;
+    }
+
+    #loveModal .love-item {
+        gap: 11px;
+
+        padding: 14px 13px;
+
+        border-radius: 15px;
+    }
+
+    #loveModal .love-item > span {
+        width: 33px;
+        height: 33px;
+
+        font-size: 1rem;
+    }
+
+    #loveModal .love-item h3 {
+        margin-bottom: 4px;
+
+        font-size: 0.9rem;
+        line-height: 1.35;
+    }
+
+    #loveModal .love-item p {
+        font-size: 0.8rem;
+        line-height: 1.65;
+    }
+
+    #loveModal .love-ending {
+        margin-top: 18px;
+        padding: 23px 17px;
+
+        border-radius: 18px;
+    }
+
+    #loveModal .love-ending-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 1.1rem;
+    }
+
+    #loveModal .love-ending h3 {
+        font-size: 1.1rem;
+    }
+
+    #loveModal .love-ending p {
+        font-size: 0.82rem;
+        line-height: 1.7;
+    }
+
+    #loveModal .love-ending-highlight {
+        font-size: 0.98rem !important;
+    }
+
+    #loveModal .love-ending-monthsary {
+        font-size: 0.86rem !important;
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — CLOSE BUTTON
+================================================== */
+
+#loveModal .close {
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#loveModal .close:hover {
+    background: rgba(82, 145, 96, 0.12);
+
+    color: #426b4d;
+
+    transform: rotate(90deg);
+}
+
+#loveModal .close:active {
+    transform: scale(0.9);
+}
+
+#loveModal .close:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.30);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   THINGS I LOVE — MODAL ENTRANCE
+================================================== */
+
+#loveModal .love-modal-content {
+    animation: loveModalReveal 0.45s ease-out;
+}
+
+@keyframes loveModalReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — SCROLLBAR POLISH
+================================================== */
+
+#loveModal .love-modal-content {
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(91, 147, 101, 0.35)
+        rgba(91, 147, 101, 0.06);
+}
+
+#loveModal .love-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#loveModal .love-modal-content::-webkit-scrollbar-track {
+    background: rgba(91, 147, 101, 0.05);
+
+    border-radius: 999px;
+}
+
+#loveModal .love-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(91, 147, 101, 0.35);
+
+    border-radius: 999px;
+}
+
+#loveModal .love-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(91, 147, 101, 0.50);
+}
+
+/* ==================================================
+   THINGS I LOVE — ITEM INTERACTION
+================================================== */
+
+#loveModal .love-item h3,
+#loveModal .love-item p {
+    transition:
+        color 0.25s ease;
+}
+
+#loveModal .love-item:hover h3 {
+    color: #3d7049;
+}
+
+#loveModal .love-item:hover p {
+    color: #5e7064;
+}
+
+#loveModal .love-item > div {
+    min-width: 0;
+}
+
+/* ==================================================
+   THINGS I LOVE — FINAL ITEM HOVER
+================================================== */
+
+#loveModal .love-item-final:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(82, 145, 96, 0.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(228, 246, 232, 0.98),
+            rgba(255, 255, 255, 0.98)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(70, 110, 80, 0.12);
+}
+
+#loveModal .love-item-final:hover > span {
+    transform: scale(1.1);
+}
+
+/* ==================================================
+   THINGS I LOVE — UNIFIED BOX DESIGN
+================================================== */
+
+#loveModal .love-item {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(235, 248, 238, 0.95),
+            rgba(255, 255, 255, 0.96)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.20);
+
+    box-shadow:
+        0 8px 22px rgba(70, 110, 80, 0.09);
+
+    border-radius: 17px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+/* SAME LEFT ACCENT FOR EVERY BOX */
+
+#loveModal .love-item::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 14px;
+    bottom: 14px;
+
+    width: 3px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(91, 147, 101, 0.15),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.15)
+        );
+}
+
+/* SAME ICON STYLE */
+
+#loveModal .love-item > span {
+    background:
+        rgba(91, 147, 101, 0.14);
+}
+
+/* SAME HOVER EFFECT */
+
+#loveModal .love-item:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(82, 145, 96, 0.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(228, 246, 232, 0.98),
+            rgba(255, 255, 255, 0.98)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(70, 110, 80, 0.12);
+}
+
+#loveModal .love-item:hover > span {
+    transform: scale(1.1);
+}
+
+/* ==================================================
+   THINGS I LOVE — BOX CONTENT ALIGNMENT
+================================================== */
+
+#loveModal .love-item > div {
+    flex: 1;
+    min-width: 0;
+}
+
+#loveModal .love-item h3 {
+    margin-top: 1px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+#loveModal .love-item p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+#loveModal .love-item > span {
+    margin-top: 1px;
+}
+
+/* ==================================================
+   THINGS I LOVE — HEADER POLISH
+================================================== */
+
+#loveModal .modal-icon {
+    position: relative;
+
+    box-shadow:
+        0 6px 16px rgba(70, 110, 80, 0.09);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+#loveModal .modal-icon:hover {
+    transform: translateY(-2px) scale(1.04);
+
+    background:
+        rgba(91, 147, 101, 0.13);
+
+    box-shadow:
+        0 9px 20px rgba(70, 110, 80, 0.12);
+}
+
+#loveModal h2 {
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+}
+
+#loveModal .modal-subtitle {
+    position: relative;
+}
+
+/* ==================================================
+   THINGS I LOVE — HEADER DIVIDER
+================================================== */
+
+#loveModal .modal-subtitle {
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(82, 145, 96, 0.12);
+}
+
+#loveModal .love-list {
+    padding-top: 4px;
+}
+
+/* ==================================================
+   THINGS I LOVE — CLOSE BUTTON POLISH
+================================================== */
+
+#loveModal .close {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #5f7165;
+
+    background: rgba(91, 147, 101, 0.05);
+
+    border: 1px solid rgba(82, 145, 96, 0.10);
+
+    box-shadow:
+        0 4px 12px rgba(70, 110, 80, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#loveModal .close:hover {
+    transform: rotate(90deg) scale(1.04);
+
+    color: #426b4d;
+
+    background:
+        rgba(91, 147, 101, 0.12);
+
+    box-shadow:
+        0 7px 16px rgba(70, 110, 80, 0.10);
+}
+
+#loveModal .close:active {
+    transform: scale(0.92);
+}
+
+#loveModal .close:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.30);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   THINGS I LOVE — MOBILE BOX POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #loveModal .love-item {
+        padding: 15px 14px;
+        gap: 12px;
+        border-radius: 16px;
+    }
+
+    #loveModal .love-item::before {
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+    }
+
+    #loveModal .love-item > span {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        font-size: 1rem;
+    }
+
+    #loveModal .love-item h3 {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 5px;
+    }
+
+    #loveModal .love-item p {
+        font-size: 0.8rem;
+        line-height: 1.7;
+    }
+
+    #loveModal .love-item:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ==================================================
+   THINGS I LOVE — FOCUS INTERACTION
+================================================== */
+
+#loveModal .love-item:focus-within {
+    border-color: rgba(82, 145, 96, 0.28);
+
+    box-shadow:
+        0 10px 26px rgba(70, 110, 80, 0.11);
+}
+
+#loveModal .love-item:focus-within > span {
+    transform: scale(1.08);
+
+    background:
+        rgba(91, 147, 101, 0.16);
+}
+
+/* ==================================================
+   THINGS I LOVE — ENDING BOX POLISH
+================================================== */
+
+#loveModal .love-ending {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(235, 248, 238, 0.95),
+            rgba(255, 255, 255, 0.96)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.20);
+
+    box-shadow:
+        0 8px 22px rgba(70, 110, 80, 0.09);
+
+    border-radius: 17px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#loveModal .love-ending:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(82, 145, 96, 0.28);
+
+    box-shadow:
+        0 12px 28px rgba(70, 110, 80, 0.12);
+}
+
+/* ==================================================
+   THINGS I LOVE — ENDING TITLE POLISH
+================================================== */
+
+#loveModal .love-ending h3 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+
+    color: #426b4d;
+
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+#loveModal .love-ending h3::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    width: 38px;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(91, 147, 101, 0.10),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.10)
+        );
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER CARD POLISH
+================================================== */
+
+#openWhenModal .letter-envelope {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.94),
+            rgba(242, 249, 244, 0.90)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 6px 18px rgba(70, 110, 80, 0.07);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+#openWhenModal .letter-envelope:hover {
+    transform: translateY(-3px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(235, 248, 238, 0.96),
+            rgba(255, 255, 255, 0.98)
+        );
+
+    border-color: rgba(82, 145, 96, 0.24);
+
+    box-shadow:
+        0 11px 25px rgba(70, 110, 80, 0.11);
+}
+
+#openWhenModal .letter-envelope:active {
+    transform: scale(0.98);
+}
+
+/* ==================================================
+   OUR SONG
+================================================== */
+
+.song-content {
+    width: min(520px, 100%);
+    text-align: center;
+    padding: 38px 28px 30px;
+}
+
+/* PHOTO */
+
+.our-photo-wrapper {
+    position: relative;
+
+    width: 180px;
+    height: 180px;
+
+    margin: 5px auto 22px;
+    padding: 6px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #b9d8c0,
+            #6f9d7a,
+            #ffffff
+        );
+
+    box-shadow:
+        0 12px 30px rgba(55, 90, 65, 0.25);
+
+    transition:
+        box-shadow 0.3s ease;
+}
+
+.our-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        3px solid rgba(255, 255, 255, 0.9);
+}
+
+.song-modal.playing .our-photo-wrapper {
+    animation: photoSpin 8s linear infinite;
+
+    box-shadow:
+        0 0 0 8px rgba(126, 168, 135, 0.12),
+        0 15px 35px rgba(55, 90, 65, 0.3);
+}
+
+@keyframes photoSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.song-label {
+    margin-bottom: 7px;
+    color: #73937a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.song-description {
+    color: #6b7d70;
+    line-height: 1.6;
+}
+
+/* MESSAGE */
+
+.song-message-box {
+    position: relative;
+    margin: 22px 0;
+    padding: 18px 22px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf5eb,
+            #f5faf5
+        );
+
+    border:
+        1px solid #d6e9d8;
+}
+
+.message-heart {
+    display: block;
+    margin-bottom: 5px;
+    color: #719678;
+    font-size: 1.5rem;
+}
+
+.song-message-box p {
+    min-height: 45px;
+    color: #55705c;
+    line-height: 1.6;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+/* PLAYER */
+
+.music-player {
+    margin-top: 20px;
+}
+
+.song-progress-container {
+    display: grid;
+
+    grid-template-columns:
+        38px
+        1fr
+        38px;
+
+    align-items: center;
+    gap: 8px;
+}
+
+.song-progress-container span {
+    color: #708275;
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+}
+
+#songProgress {
+    width: 100%;
+    accent-color: #719979;
+    cursor: pointer;
+}
+
+.play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+    height: 60px;
+
+    margin: 18px auto 10px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7da985,
+            #527c5c
+        );
+
+    color: white;
+    font-size: 1.3rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(67, 105, 75, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.07);
+
+    box-shadow:
+        0 13px 27px rgba(67, 105, 75, 0.3);
+}
+
+.now-playing {
+    color: #718076;
+    font-size: 0.82rem;
+}
+
+/* ==================================================
+   OUR SONG — MODAL DESIGN
+================================================== */
+
+#songModal .song-content {
+    max-width: 620px;
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(242, 249, 244, 0.98)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.16);
+
+    box-shadow:
+        0 20px 50px rgba(60, 100, 70, 0.15);
+
+    text-align: center;
+}
+
+#songModal .song-label {
+    margin-top: 18px;
+    margin-bottom: 7px;
+
+    color: #6a8b71;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+#songModal h2 {
+    margin-top: 4px;
+    margin-bottom: 10px;
+
+    color: #426b4d;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+#songModal .song-description {
+    max-width: 470px;
+    margin: 0 auto;
+
+    color: #6a786e;
+
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* ==================================================
+   OUR SONG — PHOTO POLISH
+================================================== */
+
+#songModal .our-photo-wrapper {
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    margin: 4px auto 18px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(82, 145, 96, 0.35),
+            rgba(255, 255, 255, 0.9)
+        );
+
+    box-shadow:
+        0 10px 25px rgba(70, 110, 80, 0.14);
+}
+
+#songModal .our-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid rgba(255, 255, 255, 0.95);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+#songModal .our-photo-wrapper:hover .our-photo {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 8px 20px rgba(70, 110, 80, 0.12);
+}
+
+/* =========================================
+   OUR SONG - CIRCULAR ROTATING PHOTO
+   ========================================= */
+
+.our-photo-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: ourPhotoRotate 8s linear infinite;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.our-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+@keyframes ourPhotoRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE BOX
+================================================== */
+
+#songModal .song-message-box {
+    position: relative;
+
+    margin: 24px auto 20px;
+    padding: 18px 22px 18px 48px;
+
+    max-width: 500px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(232, 247, 235, 0.72),
+            rgba(255, 255, 255, 0.82)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    box-shadow:
+        0 7px 20px rgba(70, 110, 80, 0.08);
+
+    text-align: left;
+}
+
+#songModal .message-heart {
+    position: absolute;
+
+    left: 18px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #5b9365;
+
+    font-size: 1.35rem;
+}
+
+#songModal .song-message-box p {
+    margin: 0;
+
+    color: #52685a;
+
+    font-size: 0.94rem;
+    line-height: 1.7;
+
+    font-style: italic;
+}
+
+#songModal .song-message-box:hover {
+    border-color: rgba(82, 145, 96, 0.22);
+
+    box-shadow:
+        0 10px 24px rgba(70, 110, 80, 0.11);
+}
+
+/* ==================================================
+   OUR SONG — MUSIC PLAYER
+================================================== */
+
+#songModal .music-player {
+    max-width: 500px;
+    margin: 0 auto;
+
+    padding: 18px 20px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.76);
+
+    border: 1px solid rgba(82, 145, 96, 0.12);
+
+    box-shadow:
+        0 7px 20px rgba(70, 110, 80, 0.07);
+}
+
+#songModal .song-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+}
+
+#songModal .song-progress-container span {
+    min-width: 34px;
+
+    color: #718078;
+
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+#songModal #currentTime {
+    text-align: right;
+}
+
+#songModal #duration {
+    text-align: left;
+}
+
+/* ==================================================
+   OUR SONG — PROGRESS BAR
+================================================== */
+
+#songModal #songProgress {
+    flex: 1;
+
+    width: 100%;
+    height: 5px;
+
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    border-radius: 999px;
+
+    background: rgba(82, 145, 96, 0.16);
+
+    cursor: pointer;
+}
+
+#songModal #songProgress::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(82, 145, 96, 0.16);
+}
+
+#songModal #songProgress::-moz-range-track {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(82, 145, 96, 0.16);
+}
+
+#songModal #songProgress::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    margin-top: -4.5px;
+
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+
+    background: #5b9365;
+
+    box-shadow:
+        0 2px 7px rgba(70, 110, 80, 0.18);
+}
+
+#songModal #songProgress::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+
+    background: #5b9365;
+
+    box-shadow:
+        0 2px 7px rgba(70, 110, 80, 0.18);
+
+    cursor: pointer;
+}
+
+#songModal #songProgress:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.30);
+    outline-offset: 4px;
+}
+
+/* ==================================================
+   OUR SONG — PLAY BUTTON
+================================================== */
+
+#songModal .play-button {
+    width: 58px;
+    height: 58px;
+
+    margin: 16px auto 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #5b9365;
+    color: #ffffff;
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(70, 110, 80, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#songModal .play-button:hover {
+    background: #4f8459;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 11px 23px rgba(70, 110, 80, 0.23);
+}
+
+#songModal .play-button:active {
+    transform: scale(0.94);
+}
+
+#songModal .play-button:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.35);
+    outline-offset: 4px;
+}
+
+/* ==================================================
+   OUR SONG — NOW PLAYING
+================================================== */
+
+#songModal .now-playing {
+    margin: 16px auto 2px;
+
+    color: #6a786e;
+
+    font-size: 0.86rem;
+    line-height: 1.5;
+
+    font-style: italic;
+
+    transition:
+        color 0.25s ease,
+        opacity 0.25s ease;
+}
+
+#songModal .now-playing::before {
+    content: "♪";
+
+    display: inline-block;
+
+    margin-right: 7px;
+
+    color: #5b9365;
+
+    font-size: 0.95rem;
+}
+
+#songModal .now-playing:hover {
+    color: #426b4d;
+}
+
+/* ==================================================
+   OUR SONG — MOBILE RESPONSIVE
+================================================== */
+
+@media (max-width: 600px) {
+
+    #songModal .song-content {
+        width: calc(100% - 20px);
+        max-height: 88vh;
+        padding: 22px 17px;
+        border-radius: 20px;
+    }
+
+    #songModal .our-photo-wrapper {
+        width: 125px;
+        height: 125px;
+        margin-bottom: 15px;
+    }
+
+    #songModal .song-label {
+        margin-top: 14px;
+        font-size: 0.7rem;
+        letter-spacing: 1.4px;
+    }
+
+    #songModal h2 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    #songModal .song-description {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    #songModal .song-message-box {
+        margin-top: 20px;
+        padding: 16px 17px 16px 43px;
+        border-radius: 16px;
+    }
+
+    #songModal .message-heart {
+        left: 15px;
+        font-size: 1.2rem;
+    }
+
+    #songModal .song-message-box p {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    #songModal .music-player {
+        padding: 16px 14px;
+        border-radius: 17px;
+    }
+
+    #songModal .song-progress-container {
+        gap: 7px;
+    }
+
+    #songModal .song-progress-container span {
+        min-width: 30px;
+        font-size: 0.7rem;
+    }
+
+    #songModal .play-button {
+        width: 54px;
+        height: 54px;
+        margin-top: 15px;
+    }
+
+    #songModal .now-playing {
+        font-size: 0.8rem;
+    }
+}
+
+/* ==================================================
+   OUR SONG — MODAL ENTRANCE
+================================================== */
+
+#songModal .song-content {
+    animation: songModalReveal 0.45s ease-out;
+}
+
+@keyframes songModalReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+} 
+
+/* ==================================================
+   OUR SONG — CLOSE BUTTON
+================================================== */
+
+#songModal .close {
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#songModal .close:hover {
+    background: rgba(82, 145, 96, 0.12);
+    color: #426b4d;
+    transform: rotate(90deg);
+}
+
+#songModal .close:active {
+    transform: scale(0.9);
+}
+
+#songModal .close:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.30);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   OUR SONG — PHOTO SOFT GLOW
+================================================== */
+
+#songModal .our-photo-wrapper::before {
+    content: "";
+
+    position: absolute;
+    inset: -6px;
+
+    border-radius: 50%;
+
+    background: rgba(105, 170, 120, 0.10);
+
+    z-index: -1;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+#songModal .our-photo-wrapper:hover::before {
+    transform: scale(1.06);
+    opacity: 0.8;
+}
+
+/* ==================================================
+   OUR SONG — MUSIC PLAYER POLISH
+================================================== */
+
+#songModal .music-player {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#songModal .music-player:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(82, 145, 96, 0.20);
+
+    box-shadow:
+        0 10px 26px rgba(70, 110, 80, 0.10);
+}
+
+/* ==================================================
+   OUR SONG — PROGRESS BAR INTERACTION
+================================================== */
+
+#songModal #songProgress {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+#songModal #songProgress:hover {
+    transform: scaleY(1.25);
+    opacity: 0.95;
+}
+
+#songModal #songProgress::-webkit-slider-thumb {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#songModal #songProgress::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+
+    box-shadow:
+        0 3px 9px rgba(70, 110, 80, 0.22);
+}
+
+#songModal #songProgress::-moz-range-thumb {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#songModal #songProgress::-moz-range-thumb:hover {
+    transform: scale(1.15);
+
+    box-shadow:
+        0 3px 9px rgba(70, 110, 80, 0.22);
+}
+
+/* ==================================================
+   OUR SONG — PLAY BUTTON POLISH
+================================================== */
+
+#songModal .play-button {
+    position: relative;
+    overflow: hidden;
+}
+
+#songModal .play-button::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    opacity: 0;
+
+    transform: scale(0.7);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+#songModal .play-button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#songModal .play-button:active {
+    transform: scale(0.91);
+}
+
+/* ==================================================
+   OUR SONG — NOW PLAYING POLISH
+================================================== */
+
+#songModal .now-playing {
+    min-height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.9;
+}
+
+#songModal .now-playing::before {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+#songModal .now-playing:hover::before {
+    transform: translateY(-1px);
+    opacity: 0.75;
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE BOX ENHANCEMENT
+================================================== */
+
+#songModal .song-message-box {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 22px 24px 22px 52px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(238, 249, 240, 0.92),
+            rgba(255, 255, 255, 0.96)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.18);
+
+    box-shadow:
+        0 8px 24px rgba(70, 110, 80, 0.09);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+#songModal .song-message-box::before {
+    content: "“";
+
+    position: absolute;
+
+    top: 5px;
+    left: 18px;
+
+    color: rgba(91, 147, 101, 0.22);
+
+    font-family: Georgia, serif;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+#songModal .song-message-box::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(91, 147, 101, 0.18),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.18)
+        );
+
+    border-radius: 18px 0 0 18px;
+}
+
+#songModal .song-message-box:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 12px 28px rgba(70, 110, 80, 0.12);
+}
+
+#songModal .song-message-box p {
+    position: relative;
+    z-index: 1;
+
+    color: #4f6756;
+
+    font-size: 0.96rem;
+    line-height: 1.8;
+
+    font-style: italic;
+    text-align: center;
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE TEXT ANIMATION
+================================================== */
+
+#songModal #songMessage {
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+#songModal .song-message-box:hover #songMessage {
+    color: #426b4d;
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE HEART POLISH
+================================================== */
+
+#songModal .message-heart {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(91, 147, 101, 0.09);
+
+    color: #5b9365;
+
+    font-size: 1.25rem;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+#songModal .song-message-box:hover .message-heart {
+    transform:
+        translateY(-50%)
+        scale(1.08);
+
+    background: rgba(91, 147, 101, 0.15);
+
+    color: #426b4d;
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE MOBILE POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #songModal .song-message-box {
+        padding: 18px 16px 18px 43px;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    #songModal .song-message-box::before {
+        left: 13px;
+        top: 5px;
+        font-size: 2.5rem;
+    }
+
+    #songModal .song-message-box::after {
+        width: 2px;
+    }
+
+    #songModal .message-heart {
+        left: 14px;
+        width: 25px;
+        height: 25px;
+        font-size: 1.1rem;
+    }
+
+    #songModal .song-message-box p {
+        font-size: 0.86rem;
+        line-height: 1.7;
+    }
+}
+
+/* ==================================================
+   OUR SONG — MESSAGE / PLAYER DIVIDER
+================================================== */
+
+#songModal .song-message-box {
+    margin-bottom: 28px;
+}
+
+#songModal .music-player {
+    position: relative;
+}
+
+#songModal .music-player::before {
+    content: "♪";
+
+    position: absolute;
+
+    top: -17px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+
+    color: #5b9365;
+
+    font-size: 0.8rem;
+
+    box-shadow:
+        0 3px 10px rgba(70, 110, 80, 0.08);
+}
+
+/* ==================================================
+   OUR SONG — DESCRIPTION POLISH
+================================================== */
+
+#songModal .song-description {
+    position: relative;
+
+    padding: 0 12px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#songModal .song-description::after {
+    content: "♡";
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: rgba(91, 147, 101, 0.45);
+
+    font-size: 0.9rem;
+}
+
+#songModal .song-description:hover {
+    color: #526b58;
+}
+
+/* ==================================================
+   OUR SONG — PHOTO / TITLE SEPARATION
+================================================== */
+
+#songModal .our-photo-wrapper {
+    margin-bottom: 20px;
+}
+
+#songModal .song-label {
+    position: relative;
+
+    display: inline-block;
+
+    padding: 0 14px;
+}
+
+#songModal .song-label::before,
+#songModal .song-label::after {
+    content: "•";
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: rgba(91, 147, 101, 0.45);
+
+    font-size: 0.7rem;
+}
+
+#songModal .song-label::before {
+    left: 0;
+}
+
+#songModal .song-label::after {
+    right: 0;
+}
+
+/* ==================================================
+   OUR SONG — TITLE POLISH
+================================================== */
+
+#songModal h2 {
+    position: relative;
+
+    display: inline-block;
+
+    padding-bottom: 8px;
+}
+
+#songModal h2::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 42px;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(91, 147, 101, 0.12),
+            rgba(91, 147, 101, 0.55),
+            rgba(91, 147, 101, 0.12)
+        );
+}
+
+/* ==================================================
+   OUR SONG — TITLE SPACING FIX
+================================================== */
+
+#songModal .song-label {
+    display: block;
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#songModal h2 {
+    display: block;
+
+    width: fit-content;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 8px;
+}
+
+/* ==================================================
+   OUR SONG — SCROLLBAR POLISH
+================================================== */
+
+#songModal .song-content {
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(91, 147, 101, 0.35)
+        rgba(91, 147, 101, 0.06);
+}
+
+#songModal .song-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#songModal .song-content::-webkit-scrollbar-track {
+    background: rgba(91, 147, 101, 0.05);
+    border-radius: 999px;
+}
+
+#songModal .song-content::-webkit-scrollbar-thumb {
+    background: rgba(91, 147, 101, 0.35);
+    border-radius: 999px;
+}
+
+#songModal .song-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(91, 147, 101, 0.50);
+}
+
+/* ==================================================
+   OUR SONG — PLAYER DEPTH
+================================================== */
+
+#songModal .music-player {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(250, 255, 251, 0.98),
+            rgba(239, 248, 241, 0.92)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 10px 26px rgba(70, 110, 80, 0.09);
+}
+
+#songModal .music-player::after {
+    content: "PANAGINIP";
+
+    display: block;
+
+    margin-top: 13px;
+
+    color: rgba(66, 107, 77, 0.55);
+
+    font-size: 0.65rem;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+}
+
+/* ==================================================
+   OUR SONG — SONG LABEL DETAIL
+================================================== */
+
+#songModal .music-player::after {
+    content: "  PARANG PANAGINIP NGA TALAGA, 'NO? ";
+
+    display: block;
+
+    margin-top: 13px;
+
+    color: rgba(66, 107, 77, 0.60);
+
+    font-size: 0.65rem;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    text-align: center;
+
+    transition:
+        color 0.25s ease,
+        letter-spacing 0.25s ease;
+}
+
+#songModal .music-player:hover::after {
+    color: #426b4d;
+    letter-spacing: 2.1px;
+}
+
+/* ==================================================
+   OPEN WHEN
+================================================== */
+
+.letters-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 13px;
+}
+
+.letter-envelope {
+    padding: 18px 15px;
+
+    border:
+        1px solid #d7e8d9;
+
+    border-radius: 17px;
+
+    background: #f2f8f3;
+    color: #42624b;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.letter-envelope:hover {
+    transform: translateY(-4px);
+    background: #e6f2e8;
+}
+
+.letter-envelope span {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 1.7rem;
+}
+
+.letter-envelope strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.letter-envelope small {
+    display: block;
+    color: #718076;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER CARDS
+================================================== */
+
+#openWhenModal .letters-grid {
+    gap: 16px;
+    margin-top: 24px;
+}
+
+#openWhenModal .letter-envelope {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(82, 145, 96, 0.14);
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    box-shadow:
+        0 7px 20px rgba(70, 110, 80, 0.08);
+
+    text-align: left;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#openWhenModal .letter-envelope:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.96);
+
+    border-color: rgba(82, 145, 96, 0.25);
+
+    box-shadow:
+        0 12px 26px rgba(70, 110, 80, 0.13);
+}
+
+#openWhenModal .letter-envelope > span {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(105, 170, 120, 0.12);
+
+    font-size: 1.35rem;
+}
+
+#openWhenModal .letter-envelope strong {
+    color: #426b4d;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+#openWhenModal .letter-envelope small {
+    color: #6a786e;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* ==================================================
+   OPEN WHEN — SOFT CARD ENTRANCE
+================================================== */
+
+#openWhenModal .letter-envelope {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: openWhenCardReveal 0.5s ease forwards;
+}
+
+#openWhenModal .letter-envelope:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+#openWhenModal .letter-envelope:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+#openWhenModal .letter-envelope:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+#openWhenModal .letter-envelope:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+#openWhenModal .letter-envelope:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+@keyframes openWhenCardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================================================
+   OPEN WHEN — ENVELOPE DETAIL
+================================================== */
+
+#openWhenModal .letter-envelope::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 10px;
+
+    height: 1px;
+
+    background: rgba(82, 145, 96, 0.12);
+}
+
+#openWhenModal .letter-envelope > span {
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+#openWhenModal .letter-envelope:hover > span {
+    transform: scale(1.08);
+    background: rgba(105, 170, 120, 0.18);
+}
+
+/* ==================================================
+   OPEN WHEN — HEADER POLISH
+================================================== */
+
+#openWhenModal .modal-icon {
+    display: inline-block;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+#openWhenModal h2 {
+    color: #426b4d;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#openWhenModal h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    margin: 10px auto 0;
+    border-radius: 999px;
+    background: rgba(82, 145, 96, 0.35);
+}
+
+#openWhenModal .modal-subtitle {
+    color: #6a786e;
+    line-height: 1.6;
+}
+
+/* ==================================================
+   OPEN WHEN — CLOSE BUTTON
+================================================== */
+
+#openWhenModal .close {
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#openWhenModal .close:hover {
+    background: rgba(82, 145, 96, 0.12);
+    color: #426b4d;
+    transform: rotate(90deg);
+}
+
+#openWhenModal .close:active {
+    transform: scale(0.9);
+}
+
+/* ==================================================
+   OPEN WHEN — MOBILE POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #openWhenModal .modal-content {
+        width: calc(100% - 20px);
+        max-height: 88vh;
+        border-radius: 20px;
+    }
+
+    #openWhenModal .modal-icon {
+        font-size: 2rem;
+    }
+
+    #openWhenModal h2 {
+        font-size: 1.45rem;
+    }
+
+    #openWhenModal .modal-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+    }
+
+    #openWhenModal .letter-envelope {
+        gap: 6px;
+        padding: 15px;
+    }
+
+    #openWhenModal .letter-envelope::after {
+        left: 15px;
+        right: 15px;
+    }
+}
+
+/* ==================================================
+   OPEN WHEN — TAP FEEDBACK
+================================================== */
+
+#openWhenModal .letter-envelope:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow:
+        0 5px 14px rgba(70, 110, 80, 0.08);
+}
+
+#openWhenModal .letter-envelope:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.35);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   OPEN WHEN — CLICKABLE CARD POLISH
+================================================== */
+
+#openWhenModal .letter-envelope {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#openWhenModal .letter-envelope strong {
+    transition: color 0.25s ease;
+}
+
+#openWhenModal .letter-envelope:hover strong {
+    color: #355d40;
+}
+
+#openWhenModal .letter-envelope small {
+    transition: color 0.25s ease;
+}
+
+#openWhenModal .letter-envelope:hover small {
+    color: #5b6d60;
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER READING MODAL
+================================================== */
+
+#letterContentModal .modal-content {
+    max-width: 680px;
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(245, 250, 246, 0.98)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.16);
+
+    box-shadow:
+        0 20px 50px rgba(60, 100, 70, 0.14);
+}
+
+#letterContentModal .modal-icon {
+    display: inline-block;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+#letterContentModal h2 {
+    color: #426b4d;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-top: 8px;
+    margin-bottom: 18px;
+}
+
+#letterContentModal h2::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 2px;
+
+    margin: 10px auto 0;
+
+    border-radius: 999px;
+
+    background: rgba(82, 145, 96, 0.35);
+}
+
+/* =========================================================
+   FINAL RESPONSIVE + MODAL FIXES
+   ========================================================= */
+
+/* Prevent horizontal scrolling */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Keep all elements inside the screen */
+* {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   MODAL STACKING FIX
+   ========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Make sure modal content stays above the background */
+.modal-content {
+    position: relative;
+    z-index: 1001;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* =========================================================
+   MEMORY LIGHTBOX
+   ========================================================= */
+
+#memoryLightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#memoryLightbox.show {
+    display: flex;
+}
+
+#memoryLightboxImage {
+    display: block;
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+}
+
+/* =========================================================
+   GIFT BOXES
+   ========================================================= */
+
+.gifts-container {
+    width: min(1100px, 100%);
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.gifts-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gift {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.gift:active {
+    transform: scale(0.97);
+}
+
+/* =========================================================
+   MEMORY SLIDESHOW
+   ========================================================= */
+
+.memory-slide-frame {
+    width: min(680px, 100%);
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#memorySlideImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .page {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .gifts-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .modal-content {
+        width: min(92%, 850px);
+        max-height: 88vh;
+    }
+
+    .memory-slide-frame {
+        height: 440px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 25px 14px;
+    }
+
+    .gifts-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 8px;
+    }
+
+    .gift {
+        width: 100%;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal.show {
+        align-items: center;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 92vh;
+        border-radius: 20px;
+    }
+
+    .memory-slide-frame {
+        width: 100%;
+        height: 400px;
+        border-radius: 18px;
+    }
+
+    #memorySlideImage {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .memory-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .memory-gallery img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Open When */
+    .open-when-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Letter */
+    .letter-content,
+    .long-letter-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .long-letter {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    /* Song */
+    #songModal .modal-content {
+        width: 100%;
+    }
+
+    /* Close buttons */
+    .close-modal,
+    .close-btn,
+    [id^="close"] {
+        touch-action: manipulation;
+    }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .page {
+        padding: 20px 10px;
+    }
+
+    .gifts-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 4px;
+    }
+
+    .memory-slide-frame {
+        height: 320px;
+        padding: 5px;
+        border-radius: 16px;
+    }
+
+    .memory-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .open-when-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal {
+        padding: 8px;
+    }
+
+    .modal-content {
+        border-radius: 16px;
+    }
+
+    #memoryLightbox {
+        padding: 10px;
+    }
+
+    #memoryLightboxImage {
+        max-width: 96vw;
+        max-height: 85vh;
+        border-radius: 14px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .gifts-container {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .memory-slide-frame {
+        height: 280px;
+    }
+
+    .memory-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+
+    .gift:hover {
+        transform: none;
+    }
+
+    button:hover {
+        transform: none;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER TEXT AREA
+================================================== */
+
+#letterContentModal .letter-text {
+    margin-top: 20px;
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(82, 145, 96, 0.10);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(82, 145, 96, 0.05);
+
+    color: #5d6d61;
+
+    text-align: left;
+    line-height: 1.85;
+
+    overflow-wrap: break-word;
+}
+
+#letterContentModal .letter-text p {
+    margin: 0 0 16px;
+}
+
+#letterContentModal .letter-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER MODAL CLOSE BUTTON
+================================================== */
+
+#letterContentModal .close {
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#letterContentModal .close:hover {
+    background: rgba(82, 145, 96, 0.12);
+    color: #426b4d;
+    transform: rotate(90deg);
+}
+
+#letterContentModal .close:active {
+    transform: scale(0.9);
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER MODAL ENTRANCE
+================================================== */
+
+#letterContentModal .modal-content {
+    animation: openWhenLetterReveal 0.4s ease-out;
+}
+
+@keyframes openWhenLetterReveal {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER READING TYPOGRAPHY
+================================================== */
+
+#letterContentModal .letter-text {
+    letter-spacing: 0.1px;
+    word-spacing: 0.35px;
+}
+
+#letterContentModal .letter-text::selection {
+    background: rgba(82, 145, 96, 0.18);
+    color: #426b4d;
+}
+
+#letterContentModal .letter-text p:first-child {
+    color: #426b4d;
+    font-weight: 600;
+}
+
+#letterContentModal .letter-text p:last-child {
+    color: #426b4d;
+    font-weight: 600;
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER SCROLLBAR
+================================================== */
+
+#letterContentModal .modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(82, 145, 96, 0.40) transparent;
+}
+
+#letterContentModal .modal-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+#letterContentModal .modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#letterContentModal .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(82, 145, 96, 0.32);
+    border-radius: 999px;
+}
+
+#letterContentModal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(82, 145, 96, 0.50);
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER ENDING POLISH
+================================================== */
+
+#letterContentModal .letter-text {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+#letterContentModal .letter-text::after {
+    content: "";
+    display: block;
+
+    width: 70px;
+    height: 1px;
+
+    margin: 24px auto 0;
+
+    background: rgba(82, 145, 96, 0.22);
+    border-radius: 999px;
+}
+
+/* ==================================================
+   OPEN WHEN — LETTER MODAL MOBILE POLISH
+================================================== */
+
+@media (max-width: 600px) {
+
+    #letterContentModal .modal-content {
+        width: calc(100% - 20px);
+        max-height: 88vh;
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+
+    #letterContentModal .modal-icon {
+        font-size: 2rem;
+        margin-bottom: 6px;
+    }
+
+    #letterContentModal h2 {
+        font-size: 1.3rem;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+
+    #letterContentModal .letter-text {
+        margin-top: 16px;
+        padding: 18px 15px 26px;
+        border-radius: 15px;
+
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+
+    #letterContentModal .letter-text p {
+        margin-bottom: 14px;
+    }
+
+    #letterContentModal .letter-text::after {
+        width: 55px;
+        margin-top: 20px;
+    }
+}
+
+/* ==================================================
+   INDIVIDUAL LETTER
+================================================== */
+
+.letter-content {
+    width: min(600px, 100%);
+}
+
+.letter-text {
+    margin-top: 20px;
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: #f0f7f1;
+    color: #52685a;
+
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+/* ==================================================
+   MY LETTER
+================================================== */
+
+.long-letter-content {
+    width: min(720px, 100%);
+}
+
+.long-letter {
+    margin-top: 20px;
+
+    color: #52685a;
+
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+.long-letter p {
+    margin-bottom: 20px;
+}
+
+.signature {
+    margin-top: 30px;
+    color: #42664b;
+    font-weight: 700;
+    text-align: right;
+}
+
+/* ==================================================
+   FLOATING HEARTS
+================================================== */
+
+.floating-hearts {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-hearts span {
+    position: absolute;
+    bottom: -50px;
+    color: rgba(91, 139, 101, 0.18);
+    font-size: 1.5rem;
+
+    animation:
+        floatUp 12s linear infinite;
+}
+
+.floating-hearts span:nth-child(1) {
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 20%;
+    animation-delay: 3s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 35%;
+    animation-delay: 6s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 65%;
+    animation-delay: 8s;
+}
+
+.floating-hearts span:nth-child(6) {
+    left: 76%;
+    animation-delay: 4s;
+}
+
+.floating-hearts span:nth-child(7) {
+    left: 88%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(8) {
+    left: 95%;
+    animation-delay: 7s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ==================================================
+   MEMORY PHOTO LIGHTBOX
+================================================== */
+
+.memory-lightbox {
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(20, 38, 25, 0.88);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.memory-lightbox.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.memory-lightbox img {
+    display: block;
+
+    max-width: 92vw;
+    max-height: 88vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    border:
+        4px solid rgba(255, 255, 255, 0.9);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+    transform: scale(0.92);
+
+    transition:
+        transform 0.3s ease;
+}
+
+.memory-lightbox.show img {
+    transform: scale(1);
+}
+
+.memory-lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #42664b;
+
+    font-size: 1.8rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.memory-lightbox-close:hover {
+    transform: scale(1.08);
+    background: #ffffff;
+}
+
+.memory-gallery img {
+    cursor: zoom-in;
+}
+
+/* ==================================================
+   MY LETTER — HEART GLOW
+================================================== */
+
+.letter-gift .gift-icon {
+    display: inline-block;
+    animation: letterHeartPulse 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes letterHeartPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(80, 150, 95, 0));
+    }
+
+    50% {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 8px rgba(80, 150, 95, 0.35));
+    }
+}
+
+/* ==================================================
+   MY LETTER — SPECIAL LETTER DESIGN
+================================================== */
+
+.letter-modal-content {
+    max-width: 760px;
+}
+
+.letter-modal-content .modal-icon {
+    animation: letterIconFloat 3s ease-in-out infinite;
+}
+
+.letter-modal-content {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.97),
+            rgba(239, 249, 241, 0.97)
+        );
+}
+
+@keyframes letterIconFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================================================
+   MY LETTER — BETTER READING EXPERIENCE
+================================================== */
+
+.long-letter {
+    text-align: left;
+}
+
+.long-letter p {
+    margin: 0 0 18px;
+    color: #5d6d61;
+    font-size: 0.98rem;
+    line-height: 1.85;
+}
+
+.long-letter p:first-child {
+    color: #426b4d;
+    font-weight: 700;
+}
+
+.long-letter p:nth-child(2) {
+    color: #426b4d;
+    font-weight: 600;
+}
+
+.long-letter .signature {
+    margin-top: 30px;
+    margin-bottom: 0;
+    text-align: right;
+    color: #426b4d;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* ==================================================
+   MY LETTER — SOFT PAPER LOOK
+================================================== */
+
+.long-letter-content {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(245, 250, 246, 0.98)
+        );
+
+    border: 1px solid rgba(82, 145, 96, 0.16);
+
+    box-shadow:
+        0 20px 50px rgba(60, 100, 70, 0.14);
+
+    border-radius: 24px;
+}
+
+.long-letter-content .modal-icon {
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.long-letter-content h2 {
+    color: #426b4d;
+}
+
+.long-letter-content .long-letter {
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(82, 145, 96, 0.1);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ==================================================
+   MY LETTER — MOBILE RESPONSIVE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .long-letter-content {
+        width: calc(100% - 20px);
+        max-height: 90vh;
+        border-radius: 20px;
+    }
+
+    .long-letter-content .long-letter {
+        margin-top: 18px;
+        padding: 18px 15px;
+        border-radius: 15px;
+    }
+
+    .long-letter p {
+        margin-bottom: 15px;
+        font-size: 0.91rem;
+        line-height: 1.75;
+    }
+
+    .long-letter p:first-child {
+        font-size: 0.94rem;
+    }
+
+    .long-letter p:nth-child(2) {
+        font-size: 0.94rem;
+    }
+
+    .long-letter .signature {
+        margin-top: 24px;
+        font-size: 0.98rem;
+    }
+}
+
+/* ==================================================
+   MY LETTER — ELEGANT TITLE DIVIDER
+================================================== */
+
+.long-letter-content h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 18px;
+}
+
+.long-letter-content h2::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    margin: 10px auto 0;
+    border-radius: 999px;
+    background: rgba(82, 145, 96, 0.35);
+}
+
+/* ==================================================
+   MY LETTER — LETTER OPENING
+================================================== */
+
+.long-letter p:first-child {
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+    letter-spacing: 0.2px;
+}
+
+.long-letter p:nth-child(2) {
+    margin-bottom: 20px;
+    font-size: 1.12rem;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+
+    .long-letter p:first-child {
+        font-size: 1rem;
+    }
+
+    .long-letter p:nth-child(2) {
+        font-size: 1.05rem;
+    }
+}
+
+/* ==================================================
+   MY LETTER — CLOSING SECTION
+================================================== */
+
+.long-letter p:nth-last-child(4),
+.long-letter p:nth-last-child(3),
+.long-letter p:nth-last-child(2) {
+    text-align: center;
+    color: #426b4d;
+    font-weight: 600;
+}
+
+.long-letter p:nth-last-child(4) {
+    margin-top: 22px;
+}
+
+.long-letter p:nth-last-child(3) {
+    font-size: 1.08rem;
+}
+
+.long-letter p:nth-last-child(2) {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.long-letter .signature {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(82, 145, 96, 0.18);
+    text-align: right;
+    color: #426b4d;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+
+    .long-letter p:nth-last-child(3) {
+        font-size: 1rem;
+    }
+
+    .long-letter p:nth-last-child(2) {
+        font-size: 1.05rem;
+    }
+
+    .long-letter .signature {
+        font-size: 0.98rem;
+    }
+}
+
+/* ==================================================
+   MY LETTER — CUSTOM SCROLLBAR
+================================================== */
+
+.long-letter-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(82, 145, 96, 0.45) transparent;
+}
+
+.long-letter-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+.long-letter-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.long-letter-content::-webkit-scrollbar-thumb {
+    background: rgba(82, 145, 96, 0.35);
+    border-radius: 999px;
+}
+
+.long-letter-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(82, 145, 96, 0.55);
+}
+
+/* ==================================================
+   MY LETTER — CLOSE BUTTON POLISH
+================================================== */
+
+.long-letter-content .close {
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.long-letter-content .close:hover {
+    background: rgba(82, 145, 96, 0.12);
+    color: #426b4d;
+    transform: rotate(90deg);
+}
+
+/* ==================================================
+   MY LETTER — SOFT MODAL ENTRANCE
+================================================== */
+
+#letterModal .long-letter-content {
+    animation: letterModalReveal 0.45s ease-out;
+}
+
+@keyframes letterModalReveal {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ==================================================
+   MY LETTER — CLOSE BUTTON FEEDBACK
+================================================== */
+
+.long-letter-content .close:active {
+    transform: scale(0.9);
+}
+
+/* ==================================================
+   MY LETTER — COMFORTABLE READING WIDTH
+================================================== */
+
+.long-letter {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==================================================
+   MY LETTER — SOFT TYPOGRAPHY
+================================================== */
+
+.long-letter p {
+    letter-spacing: 0.1px;
+    word-spacing: 0.5px;
+}
+
+.long-letter p::selection {
+    background: rgba(82, 145, 96, 0.18);
+    color: #426b4d;
+}
+
+/* ==================================================
+   MY LETTER — TITLE POLISH
+================================================== */
+
+.long-letter-content .modal-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.long-letter-content h2 {
+    margin-top: 10px;
+    color: #426b4d;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+/* ==================================================
+   MY LETTER — SMOOTH READING SCROLL
+================================================== */
+
+.long-letter-content {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.long-letter {
+    overflow-wrap: break-word;
+}
+
+/* ==================================================
+   MY LETTER — SUBTLE INNER GLOW
+================================================== */
+
+.long-letter {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(82, 145, 96, 0.05);
+}
+
+/* ==================================================
+   MY LETTER — SIGNATURE POLISH
+================================================== */
+
+.long-letter .signature {
+    position: relative;
+    display: block;
+    margin-top: 32px;
+    padding-top: 20px;
+    text-align: right;
+    color: #426b4d;
+    font-size: 1.08rem;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.2px;
+}
+
+.long-letter .signature::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 1px;
+    margin: 8px 0 0 auto;
+    background: rgba(82, 145, 96, 0.22);
+}
+
+@media (max-width: 600px) {
+
+    .long-letter .signature {
+        font-size: 1rem;
+    }
+
+    .long-letter .signature::after {
+        width: 70px;
+    }
+}
+
+/* ==================================================
+   MY LETTER — SUBTLE PAGE ACCENT
+================================================== */
+
+.long-letter {
+    position: relative;
+    padding-left: 30px !important;
+    border-left: 3px solid rgba(82, 145, 96, 0.18);
+}
+
+@media (max-width: 600px) {
+
+    .long-letter {
+        padding-left: 20px !important;
+        border-left-width: 2px;
+    }
+}
+
+/* ==================================================
+   MY LETTER — MOBILE PAGE SPACING
+================================================== */
+
+@media (max-width: 600px) {
+
+    .long-letter {
+        padding-right: 5px !important;
+    }
+
+    .long-letter p {
+        text-align: left;
+    }
+
+    .long-letter-content h2 {
+        font-size: 1.45rem;
+    }
+
+    .long-letter-content .modal-icon {
+        font-size: 2rem;
+    }
+}
+
+/* =========================================================
+   MOBILE-FRIENDLY RESPONSIVE DESIGN
+   ========================================================= */
+
+/* Tablets and smaller laptops */
+@media (max-width: 900px) {
+
+    .page {
+        width: 100%;
+        padding: 40px 24px;
+    }
+
+    .intro h1 {
+        font-size: 42px;
+    }
+
+    .gifts-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .modal-content {
+        width: calc(100% - 40px);
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .memory-photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .memory-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE PHONES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+
+    /* PAGE */
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 30px 16px 50px;
+    }
+
+
+    /* INTRO */
+
+    .intro {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .small-title {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .intro h1 {
+        font-size: clamp(30px, 9vw, 42px);
+        line-height: 1.1;
+        margin: 10px 0 15px;
+    }
+
+    .monthsary {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    .intro-text {
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 100%;
+    }
+
+    .instruction {
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+
+    /* BIG GIFT */
+
+    .main-gift-section {
+        padding: 25px 0 35px;
+    }
+
+    .big-gift {
+        transform: scale(0.85);
+    }
+
+
+    /* MINI GIFTS */
+
+    .gifts-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0;
+    }
+
+    .gift {
+        width: 100%;
+        min-height: 145px;
+        padding: 20px 18px;
+    }
+
+    .gift-title {
+        font-size: 18px;
+    }
+
+    .gift-description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    /* MODALS */
+
+    .modal {
+        padding: 12px;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        max-height: 94vh;
+        margin: 10px auto;
+        padding: 28px 18px;
+        border-radius: 22px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .close {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        font-size: 28px;
+    }
+
+    .modal-icon {
+        font-size: 35px;
+    }
+
+    .modal-content h2 {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .modal-subtitle {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       MEMORY SLIDESHOW
+       ===================================================== */
+
+    .memory-slideshow {
+        width: 100%;
+    }
+
+    .memory-slide-frame {
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+        max-height: 60vh;
+    }
+
+    #memorySlideImage {
+        width: 100%;
+        height: auto;
+        max-height: 55vh;
+        object-fit: contain;
+    }
+
+    .memory-slide-info {
+        padding: 15px 5px;
+    }
+
+    .memory-slide-info h3 {
+        font-size: 19px;
+        line-height: 1.3;
+    }
+
+    .memory-slide-info p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+
+    /* MEMORY CONTROLS */
+
+    .memory-slide-controls {
+        gap: 12px;
+    }
+
+    .memory-nav-button,
+    .memory-play-button {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+    }
+
+
+    /* MEMORY GALLERY */
+
+    .memory-photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .memory-photo-grid img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .memory-video-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .memory-video-grid video {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+
+    /* =====================================================
+       THINGS I LOVE
+       ===================================================== */
+
+    .love-list {
+        width: 100%;
+    }
+
+    .love-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px 10px;
+    }
+
+    .love-item > span {
+        flex-shrink: 0;
+        font-size: 22px;
+    }
+
+    .love-item h3 {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .love-item p {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .love-ending {
+        padding: 20px 5px;
+    }
+
+    .love-ending h3 {
+        font-size: 22px;
+    }
+
+    .love-ending p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       OUR SONG
+       ===================================================== */
+
+    .song-content {
+        text-align: center;
+    }
+
+    .our-photo-wrapper {
+        width: 160px;
+        height: 160px;
+        margin: 10px auto 20px;
+    }
+
+    .our-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .song-label {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .song-content h2 {
+        font-size: 30px;
+    }
+
+    .song-description {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .song-message-box {
+        padding: 18px 14px;
+        margin: 18px 0;
+    }
+
+    .song-message-box p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .music-player {
+        width: 100%;
+    }
+
+    .song-progress-container {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    #songProgress {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .play-button {
+        width: 55px;
+        height: 55px;
+        margin: 15px auto;
+    }
+
+    .now-playing {
+        font-size: 12px;
+    }
+
+
+    /* =====================================================
+       OPEN WHEN LETTERS
+       ===================================================== */
+
+    .letters-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .letter-envelope {
+        width: 100%;
+        padding: 18px 15px;
+    }
+
+    .letter-envelope strong {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .letter-envelope small {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       INDIVIDUAL LETTER
+       ===================================================== */
+
+    .letter-content {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .letter-text {
+        font-size: 14px;
+        line-height: 1.8;
+        white-space: pre-line;
+    }
+
+
+    /* =====================================================
+       MY LETTER
+       ===================================================== */
+
+    .long-letter-content {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .long-letter {
+        font-size: 14px;
+        line-height: 1.8;
+        text-align: left;
+    }
+
+    .long-letter p {
+        margin-bottom: 16px;
+    }
+
+    .signature {
+        text-align: right;
+        margin-top: 25px;
+    }
+
+
+    /* =====================================================
+       LIGHTBOX
+       ===================================================== */
+
+    .memory-lightbox {
+        padding: 15px;
+    }
+
+    #memoryLightboxImage {
+        width: 100%;
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+    }
+
+    .memory-lightbox-close {
+        top: 12px;
+        right: 12px;
+        font-size: 30px;
+    }
+
+
+    /* =====================================================
+       FLOATING HEARTS
+       ===================================================== */
+
+    .floating-hearts {
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .page {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .intro h1 {
+        font-size: 29px;
+    }
+
+    .gift {
+        min-height: 135px;
+        padding: 16px 12px;
+    }
+
+    .gift-title {
+        font-size: 16px;
+    }
+
+    .gift-description {
+        font-size: 12px;
+    }
+
+    .modal-content {
+        padding: 24px 14px;
+    }
+
+    .modal-content h2 {
+        font-size: 23px;
+    }
+
+    .memory-photo-grid {
+        gap: 6px;
+    }
+
+    .our-photo-wrapper {
+        width: 135px;
+        height: 135px;
+    }
+
+}
+
+/* =========================================
+   ROMANTIC LOADING SCREEN
+   ========================================= */
+
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #f3fbf5 45%,
+            #e8f5ec 100%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#loadingScreen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   BACKGROUND GLOW
+   ========================================= */
+
+#loadingScreen::before {
+    content: "";
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(140, 200, 155, 0.16);
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    animation: loadingGlow 4s ease-in-out infinite;
+}
+
+@keyframes loadingGlow {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.loading-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 420px);
+
+    text-align: center;
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.58);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 25px 70px rgba(60, 100, 70, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    backdrop-filter: blur(12px);
+
+    animation: loadingContentAppear 1s ease both;
+}
+
+@keyframes loadingContentAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================
+   GIFT
+   ========================================= */
+
+.loading-gift {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 120px;
+
+    margin: 0 auto 20px;
+
+    font-size: 68px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 12px 35px rgba(70, 120, 80, 0.15),
+        0 0 0 10px rgba(130, 190, 145, 0.07);
+
+    animation: loadingGiftFloat 2.5s ease-in-out infinite;
+}
+
+/* Glow around gift */
+
+.loading-gift::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -12px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(100, 165, 115, 0.25);
+
+    animation: loadingRing 2.5s ease-in-out infinite;
+}
+
+@keyframes loadingGiftFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+@keyframes loadingRing {
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.loading-content h2 {
+    position: relative;
+
+    margin: 0;
+
+    color: #315c46;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(23px, 5vw, 30px);
+
+    line-height: 1.3;
+
+    letter-spacing: 0.3px;
+}
+
+.loading-content h2::after {
+    content: "♡";
+
+    display: inline-block;
+
+    margin-left: 7px;
+
+    font-size: 18px;
+
+    animation: tinyHeart 1.5s ease-in-out infinite;
+}
+
+@keyframes tinyHeart {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+
+/* =========================================
+   SUBTITLE
+   ========================================= */
+
+.loading-content p {
+    margin: 10px 0 0;
+
+    color: #789486;
+
+    font-size: 14px;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+   ========================================= */
+
+.loading-hearts {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin: 22px 0 25px;
+}
+
+.loading-hearts span {
+    display: inline-block;
+
+    font-size: 18px;
+
+    color: #79a98a;
+
+    animation: loadingHeartFloat 2s ease-in-out infinite;
+}
+
+.loading-hearts span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-hearts span:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.loading-hearts span:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.loading-hearts span:nth-child(4) {
+    animation-delay: 0.75s;
+}
+
+.loading-hearts span:nth-child(5) {
+    animation-delay: 1s;
+}
+
+@keyframes loadingHeartFloat {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.55;
+    }
+
+    50% {
+        transform: translateY(-8px) scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   LOADING BAR
+   ========================================= */
+
+.loading-bar {
+    position: relative;
+
+    width: min(260px, 80%);
+
+    height: 7px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 50px;
+
+    background: #dceee1;
+
+    box-shadow:
+        inset 0 1px 3px rgba(50, 90, 60, 0.08);
+}
+
+.loading-progress {
+    position: relative;
+
+    width: 0;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #79a98a,
+            #a8d5b5,
+            #79a98a
+        );
+
+    background-size: 200% 100%;
+
+    animation:
+        loadingProgress 2.2s ease forwards,
+        loadingBarShine 1.2s linear infinite;
+}
+
+@keyframes loadingProgress {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes loadingBarShine {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 200% 50%;
+    }
+}
+
+
+/* =========================================
+   LITTLE SPARKLES
+   ========================================= */
+
+#loadingScreen::after {
+    content: "✦     ♡     ✦     ♡     ✦";
+
+    position: absolute;
+
+    bottom: 8%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    color: rgba(100, 155, 115, 0.35);
+
+    font-size: 14px;
+
+    letter-spacing: 10px;
+
+    animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) translateY(-8px);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .loading-content {
+        width: 88%;
+        padding: 38px 20px;
+        border-radius: 25px;
+    }
+
+    .loading-gift {
+        width: 100px;
+        height: 100px;
+        font-size: 58px;
+    }
+
+    .loading-content h2 {
+        font-size: 23px;
+    }
+
+    .loading-content p {
+        font-size: 13px;
+    }
+
+    .loading-hearts {
+        gap: 13px;
+    }
+
+    .loading-bar {
+        width: 220px;
+    }
+
+    #loadingScreen::after {
+        font-size: 11px;
+        letter-spacing: 6px;
+    }
+
+
+/* ==================================================
+   SMALL TABLET / LARGE PHONE
+================================================== */
+
+@media (max-width: 700px) {
+    .page {
+        padding:
+            35px
+            15px
+            60px;
+    }
+
+    .intro {
+        margin-bottom: 30px;
+    }
+
+    .main-gift-section {
+        min-height: 270px;
+    }
+
+    .big-gift {
+        transform: scale(0.9);
+    }
+
+    .big-gift:hover {
+        transform:
+            scale(0.94)
+            translateY(-5px);
+    }
+
+    .gifts-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .gift {
+        min-height: 260px;
+        padding:
+            115px
+            12px
+            20px;
+    }
+
+    .mini-gift-visual {
+        width: 130px;
+        height: 88px;
+    }
+
+    .mini-gift-lid {
+        width: 126px;
+        height: 25px;
+    }
+
+    .mini-gift-body {
+        height: 66px;
+    }
+
+    .mini-gift-ribbon {
+        width: 19px;
+        height: 78px;
+    }
+
+    .mini-gift-bow {
+        width: 35px;
+        height: 25px;
+    }
+
+    .mini-gift-bow.left {
+        left: 30px;
+    }
+
+    .mini-gift-bow.right {
+        right: 30px;
+    }
+
+    .gift-icon {
+        font-size: 2rem;
+    }
+
+    .gift-title {
+        font-size: 0.95rem;
+    }
+
+    .gift-description {
+        font-size: 0.72rem;
+    }
+
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        max-height: 92vh;
+        padding:
+            42px
+            22px
+            25px;
+    }
+
+    .memory-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .memory-gallery img,
+    .memory-gallery video {
+        height: 200px;
+    }
+
+    .memory-slide-frame {
+        height: 400px;
+        border-radius: 18px;
+    }
+}
+
+/* ==================================================
+   PHONE
+================================================== */
+
+@media (max-width: 450px) {
+    .page {
+        padding:
+            28px
+            10px
+            50px;
+    }
+
+    .intro {
+        margin-bottom: 25px;
+    }
+
+    .small-title {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+    }
+
+    .intro h1 {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .intro-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .instruction {
+        font-size: 0.85rem;
+    }
+
+    .main-gift-section {
+        min-height: 245px;
+    }
+
+    .big-gift {
+        transform: scale(0.76);
+    }
+
+    .big-gift:hover {
+        transform:
+            scale(0.8)
+            translateY(-4px);
+    }
+
+    .gifts-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .gift {
+        min-height: 235px;
+        padding:
+            105px
+            7px
+            17px;
+        border-radius: 14px;
+    }
+
+    .mini-gift-visual {
+        top: 25px;
+        width: 112px;
+        height: 78px;
+    }
+
+    .mini-gift-lid {
+        width: 108px;
+        height: 22px;
+        top: 11px;
+    }
+
+    .mini-gift-body {
+        left: 7px;
+        right: 7px;
+        height: 58px;
+    }
+
+    .mini-gift-ribbon {
+        width: 17px;
+        height: 69px;
+    }
+
+    .mini-gift-bow {
+        top: 0;
+        width: 31px;
+        height: 22px;
+        border-width: 4px;
+    }
+
+    .mini-gift-bow.left {
+        left: 25px;
+    }
+
+    .mini-gift-bow.right {
+        right: 25px;
+    }
+
+    .mini-gift-visual::after {
+        top: 6px;
+        width: 17px;
+        height: 17px;
+        border-width: 2px;
+    }
+
+    .gift-icon {
+        min-height: 38px;
+        margin-bottom: 7px;
+        font-size: 1.8rem;
+    }
+
+    .gift-title {
+        font-size: 0.82rem;
+    }
+
+    .gift-description {
+        max-width: 125px;
+        font-size: 0.65rem;
+        line-height: 1.4;
+    }
+
+    .modal {
+        padding: 8px;
+    }
+
+    .modal-content {
+        max-height: 92vh;
+        padding:
+            42px
+            16px
+            20px;
+        border-radius: 22px;
+    }
+
+    .close {
+        width: 36px;
+        height: 36px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .our-photo-wrapper {
+        width: 145px;
+        height: 145px;
+    }
+
+    .song-content {
+        padding:
+            32px
+            15px
+            20px;
+    }
+
+    .song-message-box {
+        padding: 15px;
+    }
+
+    .letters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .letter-envelope {
+        padding: 15px;
+    }
+
+    .long-letter {
+        font-size: 0.92rem;
+        line-height: 1.85;
+    }
+
+    .love-item {
+        align-items: flex-start;
+    }
+
+    .memory-lightbox {
+        padding: 15px;
+    }
+
+    .memory-lightbox img {
+        max-width: 96vw;
+        max-height: 82vh;
+        border-width: 3px;
+        border-radius: 9px;
+    }
+
+    .memory-lightbox-close {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .memory-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .memory-gallery img,
+    .memory-gallery video {
+        height: 230px;
+    }
+
+    .memory-slide-frame {
+        height: 330px;
+        padding: 5px;
+        border-radius: 16px;
+    }
+
+    .memory-slide-frame::before {
+        inset: 5px;
+        border-radius: 12px;
+    }
+
+    #memorySlideImage {
+        border-radius: 12px;
+    }
+
+    .memory-slide-controls {
+        gap: 15px;
+    }
+
+    .memory-nav-button {
+        width: 42px;
+        height: 42px;
+        font-size: 1.7rem;
+    }
+
+    .memory-play-button {
+        width: 52px;
+        height: 52px;
+    }
+
+    .memory-slide-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .memory-slide-info p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+}
+
+/* ==================================================
+   VERY SMALL PHONE
+================================================== */
+
+@media (max-width: 360px) {
+    .gifts-container {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .gift {
+        min-height: 230px;
+    }
+
+    .main-gift-section {
+        min-height: 220px;
+    }
+
+    .big-gift {
+        transform: scale(0.65);
+    }
+
+    .big-gift:hover {
+        transform:
+            scale(0.68)
+            translateY(-3px);
+    }
+}
+
+/* ==================================================
+   TOUCH DEVICES
+================================================== */
+
+@media (hover: none) {
+    .gift:hover {
+        transform: none;
+        filter: none;
+    }
+
+    .gift:hover .mini-gift-visual {
+        transform: translateX(-50%);
+    }
+
+    .gift:hover .gift-icon {
+        transform: none;
+    }
+
+    .letter-envelope:hover {
+        transform: none;
+    }
+
+    .play-button:hover {
+        transform: none;
+    }
+
+    .memory-nav-button:hover,
+    .memory-play-button:hover,
+    .memory-lightbox-close:hover {
+        transform: none;
+    }
+}
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==================================================
+   OUR MEMORIES SLIDESHOW
+================================================== */
+
+.memories-modal-content {
+    width: min(900px, 100%);
+}
+
+.memory-slideshow {
+    width: 100%;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.memory-slide-frame {
+    position: relative;
+    width: min(680px, 100%);
+    height: 500px;
+    margin: 0 auto;
+    padding: 8px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #dceede,
+            #8fb998
+        );
+
+    box-shadow:
+        0 18px 40px rgba(55, 90, 65, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+    overflow: hidden;
+}
+
+.memory-slide-frame::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.8);
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+#memorySlideImage {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    background: #edf6ee;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s ease;
+}
+
+#memorySlideImage.changing {
+    opacity: 0;
+    transform: scale(0.97);
+}
+
+.memory-slide-info {
+    margin-top: 15px;
+    color: #66806d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.memory-slide-info h3 {
+    margin-top: 8px;
+    margin-bottom: 6px;
+
+    color: #315b3e;
+
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+}
+
+.memory-slide-info p {
+    width: min(560px, 100%);
+    margin: 0 auto;
+
+    color: #6b7d70;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.memory-slide-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+    margin-top: 15px;
+}
+
+.memory-nav-button,
+.memory-play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.memory-nav-button {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #e5f1e7;
+    color: #52765c;
+
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.memory-nav-button:hover {
+    transform: scale(1.08);
+    background: #d6e9d9;
+}
+
+.memory-play-button {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7fae89,
+            #527c5c
+        );
+
+    color: #fff;
+    font-size: 1.15rem;
+
+    box-shadow:
+        0 8px 18px rgba(67, 105, 75, 0.25);
+}
+
+.memory-play-button:hover {
+    transform: scale(1.07);
+
+    box-shadow:
+        0 11px 23px rgba(67, 105, 75, 0.32);
+}
+
+.memory-progress {
+    width: min(680px, 100%);
+    height: 5px;
+
+    margin: 18px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #dceade;
+}
+
+.memory-progress-bar {
+    width: 1.54%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7fae89,
+            #527c5c
+        );
+
+    transition:
+        width 0.3s ease;
+}
+
+/* ==================================================
+   RESPONSIVE SLIDESHOW
+================================================== */
+
+@media (max-width: 700px) {
+    .memory-slide-frame {
+        height: 400px;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 450px) {
+    .memory-slide-frame {
+        height: 330px;
+        padding: 5px;
+        border-radius: 16px;
+    }
+
+    .memory-slide-frame::before {
+        inset: 5px;
+        border-radius: 12px;
+    }
+
+    #memorySlideImage {
+        border-radius: 12px;
+    }
+
+    .memory-slide-controls {
+        gap: 15px;
+    }
+
+    .memory-nav-button {
+        width: 42px;
+        height: 42px;
+        font-size: 1.7rem;
+    }
+
+    .memory-play-button {
+        width: 52px;
+        height: 52px;
+    }
+
+    .memory-slide-info h3 {
+        font-size: 1.15rem;
+    }
+
+    .memory-slide-info p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+}
+
+/* ==================================================
+   MAIN GIFT BOX — SOFT HOVER POLISH
+================================================== */
+
+.gift {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.gift:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(70, 110, 80, 0.12);
+}
+
+.gift:active {
+    transform: translateY(-1px) scale(0.98);
+}
+.gift:focus-visible {
+    outline: 2px solid rgba(82, 145, 96, 0.35);
+    outline-offset: 4px;
+}
+}
