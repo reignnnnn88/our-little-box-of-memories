@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const detail = memoryDetails[currentMemory - 1];
 
-        memorySlideImage.src = `memories/${currentMemory}.jpg`;
+        memorySlideImage.src = `${currentMemory}.jpg`;
         memorySlideImage.alt = `Memory ${currentMemory}`;
 
         if (memorySlideCounter) {
